@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+from pandas import Timestamp
 
 match_dict = {2766: {'date': Timestamp('2011-04-24 00:00:00'),
   'home_team_name': 'Bolton Wanderers',
