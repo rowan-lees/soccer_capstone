@@ -55,11 +55,11 @@ draw_button = st.button("Draw")
 away_w_button = st.button("Away Team Win")
 
 if home_w_button:
-    st.write(f'You wagered ${wager} that {match_df['home_team_name'].values[0]} will Win!')
+    st.write(f"You wagered ${wager} that {match_df['home_team_name'].values[0]} will Win!")
 elif away_w_button:
-    st.write(f'You wagered ${wager} that {match_df['away_team_name'].values[0]} will Win!')
+    st.write(f"You wagered ${wager} that {match_df['away_team_name'].values[0]} will Win!")
 elif draw_button:
-    st.write(f'You wagered ${wager} that the match will end in a Draw!')
+    st.write(f"You wagered ${wager} that the match will end in a Draw!")
 else:
     continue
 
