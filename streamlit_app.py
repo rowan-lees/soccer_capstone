@@ -2,6 +2,19 @@ import streamlit as st
 import pandas as pd
 from pandas import Timestamp
 import random
+from streamlit.report_thread import get_report_ctx
+from streamlit.server.server import Server
+
+class SessionState:
+    def __init__(self, **kwargs):
+        self.__dict__.update(kwargs)
+
+def get_session():
+    session_id = get_report_ctx().session_id
+    session = Server.get_current()._session_infos[session_id].session
+    if not hasattr(session, '_custom_session_state'):
+        session._custom_session_state = SessionState()
+    return session._custom_session_state
 
 match_dict = {2766: {'date': Timestamp('2011-04-24 00:00:00'),
   'home_team_name': 'Bolton Wanderers',
@@ -40,8 +53,7 @@ def generate_random_match():
     match_df = pd.DataFrame.from_dict({match_id:match_info}, orient='index')
     return match_df
 
-new_match = generate_random_match()
-sample_match = new_match.copy()
+sample_match = generate_random_match()
 
 st.title("Applying Machine Learning for Soccer Betting Success")
 
@@ -72,7 +84,6 @@ else:
 
 # Generate a new match
 if st.button("Generate New Match"):
-    new_match = generate_random_match()
-    sample_match = new_match.copy()
+    sample_match = generate_random_match()
     st.write(f"New Match: {sample_match['home_team_name'].values[0]} vs. {sample_match['away_team_name'].values[0]}")
     st.write(f"Date: {sample_match['date'].dt.strftime('%d-%m-%Y').values[0]}")
