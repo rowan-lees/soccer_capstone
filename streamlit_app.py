@@ -75,8 +75,6 @@ match_generated = False
 # Generate a new match
 if st.button("Generate New Match"):
     sample_match = generate_random_match()
-    st.write(f"Match: {sample_match['home_team_name'].values[0]} vs. {sample_match['away_team_name'].values[0]}")
-    st.write(f"Date: {sample_match['date'].dt.strftime('%d-%m-%Y').values[0]}")
     match_generated = True
 
 wager_str = st.text_input("Enter your $$ wager")
