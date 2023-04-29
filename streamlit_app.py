@@ -48,7 +48,8 @@ except ValueError:
 
 st.write("Wager entered:", wager)
 
-st.write(f"{match_df['home_team_name'].values[0]} vs. {match_df['away_team_name'].values[0]}, {match_df['date'].values[0]}")
+st.write(f"{match_df['home_team_name'].values[0]} vs. {match_df['away_team_name'].values[0]}")
+st.write(f"Date: {match_df['date'].dt.strftime('%d-%m-%Y').values[0]}")
 
 home_w_button = st.button("Home Team Win")
 draw_button = st.button("Draw")
