@@ -71,6 +71,7 @@ def generate_random_match():
     return match_df
 
 match_generated = False
+sample_match = None
 
 # Generate a new match
 if st.button("Generate New Match"):
