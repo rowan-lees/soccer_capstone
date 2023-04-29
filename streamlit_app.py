@@ -70,15 +70,13 @@ def generate_random_match():
     match_df = pd.DataFrame.from_dict({match_id:match_info}, orient='index')
     return match_df
 
+sample_match = None
+
 # Generate a new match
 if st.button("Generate New Match"):
     sample_match = generate_random_match()
-    st.write(f"New Match: {sample_match['home_team_name'].values[0]} vs. {sample_match['away_team_name'].values[0]}")
+    st.write(f"Match: {sample_match['home_team_name'].values[0]} vs. {sample_match['away_team_name'].values[0]}")
     st.write(f"Date: {sample_match['date'].dt.strftime('%d-%m-%Y').values[0]}")
-
-
-st.write(f"{sample_match['home_team_name'].values[0]} vs. {sample_match['away_team_name'].values[0]}")
-st.write(f"Date: {sample_match['date'].dt.strftime('%d-%m-%Y').values[0]}")
 
 wager_str = st.text_input("Enter your $$ wager")
 
@@ -93,12 +91,30 @@ home_w_button = st.button("Home Team Win")
 draw_button = st.button("Draw")
 away_w_button = st.button("Away Team Win")
 
+# if home_w_button:
+#     st.write(f"You wagered ${wager} that {sample_match['home_team_name'].values[0]} will Win!")
+# elif away_w_button:
+#     st.write(f"You wagered ${wager} that {sample_match['away_team_name'].values[0]} will Win!")
+# elif draw_button:
+#     st.write(f"You wagered ${wager} that the match will end in a Draw!")
+# else:
+#     st.write("Please make a selection.")
+
 if home_w_button:
-    st.write(f"You wagered ${wager} that {sample_match['home_team_name'].values[0]} will Win!")
+    if sample_match is None:
+        st.warning("Please generate a match first")
+    else:
+        st.write(f"You wagered ${wager} that {sample_match['home_team_name'].values[0]} will Win!")
 elif away_w_button:
-    st.write(f"You wagered ${wager} that {sample_match['away_team_name'].values[0]} will Win!")
+    if sample_match is None:
+        st.warning("Please generate a match first")
+    else:
+        st.write(f"You wagered ${wager} that {sample_match['away_team_name'].values[0]} will Win!")
 elif draw_button:
-    st.write(f"You wagered ${wager} that the match will end in a Draw!")
+    if sample_match is None:
+        st.warning("Please generate a match first")
+    else:
+        st.write(f"You wagered ${wager} that the match will end in a Draw!")
 else:
     st.write("Please make a selection.")
 
