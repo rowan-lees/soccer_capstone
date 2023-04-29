@@ -91,7 +91,7 @@ st.write("Wager entered:", wager_str)
 if match_generated:
     # Display the match information
     st.write(f"{sample_match['home_team_name'].values[0]} vs. {sample_match['away_team_name'].values[0]}")
-    st.write(f"Date: {sample_match['date'].strftime('%d-%m-%Y')}")
+    st.write(f"Date: {sample_match['date'].dt.strftime('%d-%m-%Y')}")
 
     # Get the user's bet
     home_w_button = st.button("Home Team Win")
