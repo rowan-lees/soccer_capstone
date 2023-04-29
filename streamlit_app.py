@@ -49,3 +49,17 @@ except ValueError:
 st.write("Wager entered:", wager)
 
 st.write(f"{match_df['home_team_name'].values[0]} vs. {match_df['away_team_name'].values[0]}, {match_df['date'].values[0]}")
+
+home_w_button = st.button("Home Team Win")
+draw_button = st.button("Draw")
+away_w_button = st.button("Away Team Win")
+
+if home_w_button:
+    st.write(f'You wagered ${wager} that {match_df['home_team_name'].values[0]} will Win!')
+elif away_w_button:
+    st.write(f'You wagered ${wager} that {match_df['away_team_name'].values[0]} will Win!')
+elif draw_button:
+    st.write(f'You wagered ${wager} that the match will end in a Draw!')
+else:
+    continue
+
