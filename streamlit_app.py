@@ -2,19 +2,7 @@ import streamlit as st
 import pandas as pd
 from pandas import Timestamp
 import random
-from streamlit.report_thread import get_report_ctx
-from streamlit.server.server import Server
 
-class SessionState:
-    def __init__(self, **kwargs):
-        self.__dict__.update(kwargs)
-
-def get_session():
-    session_id = get_report_ctx().session_id
-    session = Server.get_current()._session_infos[session_id].session
-    if not hasattr(session, '_custom_session_state'):
-        session._custom_session_state = SessionState()
-    return session._custom_session_state
 
 match_dict = {2766: {'date': Timestamp('2011-04-24 00:00:00'),
   'home_team_name': 'Bolton Wanderers',
@@ -46,6 +34,33 @@ match_dict = {2766: {'date': Timestamp('2011-04-24 00:00:00'),
  3648: {'date': Timestamp('2013-11-02 00:00:00'),
   'home_team_name': 'West Ham United',
   'away_team_name': 'Aston Villa'}}
+
+league_list = ['ALL',
+  'Belgium Pro League',
+ 'England Premier League',
+ 'France Ligue 1',
+ 'Germany Bundesliga',
+ 'Italy Serie A',
+ 'Netherlands Eredivisie',
+ 'Poland Ekstraklasa',
+ 'Portugal Primeira Liga',
+ 'Scotland Premier League',
+ 'Spain LaLiga',
+ 'Switzerland Super League']
+
+season_list = ['ALL',
+ '2008/2009',
+ '2009/2010',
+ '2010/2011',
+ '2011/2012',
+ '2012/2013',
+ '2013/2014',
+ '2014/2015',
+ '2015/2016']
+
+league_selection = st.selectbox("Select League",league_list)
+season_selection = st.selectbox("Select Season",season_list)
+
 
 def generate_random_match():
     match_id = random.choice(list(match_dict.keys()))
