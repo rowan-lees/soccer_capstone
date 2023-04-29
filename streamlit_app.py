@@ -39,8 +39,8 @@ sample_match = match_df.sample(n=1)
 
 st.title("Applying Machine Learning for Soccer Betting Success")
 
-st.write(f"{match_df['home_team_name'].values[0]} vs. {match_df['away_team_name'].values[0]}")
-st.write(f"Date: {match_df['date'].dt.strftime('%d-%m-%Y').values[0]}")
+st.write(f"{sample_match['home_team_name'].values[0]} vs. {sample_match['away_team_name'].values[0]}")
+st.write(f"Date: {sample_match['date'].dt.strftime('%d-%m-%Y').values[0]}")
 
 wager_str = st.text_input("Enter your $$ wager")
 
@@ -49,16 +49,16 @@ try:
 except ValueError:
     st.warning("Please enter a valid wager (e.g. 100 or 55.55), please exclude the dollar sign")
 
-st.write("Wager entered:", wager)
+st.write("Wager entered:", wager_str)
 
 home_w_button = st.button("Home Team Win")
 draw_button = st.button("Draw")
 away_w_button = st.button("Away Team Win")
 
 if home_w_button:
-    st.write(f"You wagered ${wager} that {match_df['home_team_name'].values[0]} will Win!")
+    st.write(f"You wagered ${wager} that {sample_match['home_team_name'].values[0]} will Win!")
 elif away_w_button:
-    st.write(f"You wagered ${wager} that {match_df['away_team_name'].values[0]} will Win!")
+    st.write(f"You wagered ${wager} that {sample_match['away_team_name'].values[0]} will Win!")
 elif draw_button:
     st.write(f"You wagered ${wager} that the match will end in a Draw!")
 else:
