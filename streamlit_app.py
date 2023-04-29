@@ -40,7 +40,8 @@ def generate_random_match():
     match_df = pd.DataFrame.from_dict({match_id:match_info}, orient='index')
     return match_df
 
-sample_match = generate_random_match()
+new_match = generate_random_match()
+sample_match = new_match.copy()
 
 st.title("Applying Machine Learning for Soccer Betting Success")
 
@@ -71,6 +72,7 @@ else:
 
 # Generate a new match
 if st.button("Generate New Match"):
-    sample_match = generate_random_match()
+    new_match = generate_random_match()
+    sample_match = new_match.copy()
     st.write(f"New Match: {sample_match['home_team_name'].values[0]} vs. {sample_match['away_team_name'].values[0]}")
     st.write(f"Date: {sample_match['date'].dt.strftime('%d-%m-%Y').values[0]}")
