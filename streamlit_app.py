@@ -58,6 +58,8 @@ season_list = ['ALL',
  '2014/2015',
  '2015/2016']
 
+st.title("Applying Machine Learning for Soccer Betting Success")
+
 league_selection = st.selectbox("Select League",league_list)
 season_selection = st.selectbox("Select Season",season_list)
 
@@ -68,9 +70,12 @@ def generate_random_match():
     match_df = pd.DataFrame.from_dict({match_id:match_info}, orient='index')
     return match_df
 
-sample_match = generate_random_match()
+# Generate a new match
+if st.button("Generate New Match"):
+    sample_match = generate_random_match()
+    st.write(f"New Match: {sample_match['home_team_name'].values[0]} vs. {sample_match['away_team_name'].values[0]}")
+    st.write(f"Date: {sample_match['date'].dt.strftime('%d-%m-%Y').values[0]}")
 
-st.title("Applying Machine Learning for Soccer Betting Success")
 
 st.write(f"{sample_match['home_team_name'].values[0]} vs. {sample_match['away_team_name'].values[0]}")
 st.write(f"Date: {sample_match['date'].dt.strftime('%d-%m-%Y').values[0]}")
@@ -97,8 +102,3 @@ elif draw_button:
 else:
     st.write("Please make a selection.")
 
-# Generate a new match
-if st.button("Generate New Match"):
-    sample_match = generate_random_match()
-    st.write(f"New Match: {sample_match['home_team_name'].values[0]} vs. {sample_match['away_team_name'].values[0]}")
-    st.write(f"Date: {sample_match['date'].dt.strftime('%d-%m-%Y').values[0]}")
