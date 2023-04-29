@@ -61,5 +61,5 @@ elif away_w_button:
 elif draw_button:
     st.write(f"You wagered ${wager} that the match will end in a Draw!")
 else:
-    continue
+    st.write("Please make a selection.")
 
