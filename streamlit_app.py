@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 from pandas import Timestamp
+import random
 
 match_dict = {2766: {'date': Timestamp('2011-04-24 00:00:00'),
   'home_team_name': 'Bolton Wanderers',
@@ -33,9 +34,13 @@ match_dict = {2766: {'date': Timestamp('2011-04-24 00:00:00'),
   'home_team_name': 'West Ham United',
   'away_team_name': 'Aston Villa'}}
 
-match_df = pd.DataFrame.from_dict(match_dict, orient='index')
+def generate_random_match():
+    match_id = random.choice(list(match_dict.keys()))
+    match_info = match_dict[match_id]
+    match_df = pd.DataFrame.from_dict({match_id:match_info}, orient='index')
+    return match_df
 
-sample_match = match_df.sample(n=1)
+sample_match = generate_random_match()
 
 st.title("Applying Machine Learning for Soccer Betting Success")
 
@@ -64,3 +69,8 @@ elif draw_button:
 else:
     st.write("Please make a selection.")
 
+# Generate a new match
+if st.button("Generate New Match"):
+    sample_match = generate_random_match()
+    st.write(f"New Match: {sample_match['home_team_name'].values[0]} vs. {sample_match['away_team_name'].values[0]}")
+    st.write(f"Date: {sample_match['date'].dt.strftime('%d-%m-%Y').values[0]}")
