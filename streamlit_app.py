@@ -35,18 +35,19 @@ match_dict = {2766: {'date': Timestamp('2011-04-24 00:00:00'),
   'home_team_name': 'West Ham United',
   'away_team_name': 'Aston Villa'}}
 
-league_list = ['ALL',
-  'Belgium Pro League',
- 'England Premier League',
- 'France Ligue 1',
- 'Germany Bundesliga',
- 'Italy Serie A',
- 'Netherlands Eredivisie',
- 'Poland Ekstraklasa',
- 'Portugal Primeira Liga',
- 'Scotland Premier League',
- 'Spain LaLiga',
- 'Switzerland Super League']
+# league_list = ['ALL',
+#   'Belgium Pro League',
+#  'England Premier League',
+#  'France Ligue 1',
+#  'Germany Bundesliga',
+#  'Italy Serie A',
+#  'Netherlands Eredivisie',
+#  'Portugal Primeira Liga',
+#  'Scotland Premier League',
+#  'Spain LaLiga',
+#  'Switzerland Super League']
+
+league_list = load_data(st.secrets["league_list_url"])
 
 season_list = ['ALL',
  '2008/2009',
