@@ -14,6 +14,10 @@ league_list = load_data(st.secrets["league_list_url"])
 country_list = load_data(st.secrets["country_list_url"])
 league_table = load_data(st.secrets["league_table_url"])
 
+filt_leag_8_9_England = league_table_df[(league_table_df['country']=='England') & (league_table_df['season']=='2009/2010')]
+st.dataframe(filt_leag_8_9_England)
+
+
 match_dict = {2766: {'date': Timestamp('2011-04-24 00:00:00'),
   'home_team_name': 'Bolton Wanderers',
   'away_team_name': 'Arsenal'},
