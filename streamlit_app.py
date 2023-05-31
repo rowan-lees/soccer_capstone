@@ -7,8 +7,10 @@ import random
 # Uses st.cache_data to only rerun when the query changes or after 10 min.
 @st.cache_data(ttl=600)
 def load_data(sheets_url):
-    csv_url = sheets_url.replace("/edit#gid=", "/export?format=csv&gid=")
+    csv_url = sheets_url.replace("/edit?usp=sharing", "/export?format=csv")
     return pd.read_csv(csv_url)
+
+league_list = load_data(st.secrets["league_list_url"])
 
 match_dict = {2766: {'date': Timestamp('2011-04-24 00:00:00'),
   'home_team_name': 'Bolton Wanderers',
@@ -53,7 +55,7 @@ match_dict = {2766: {'date': Timestamp('2011-04-24 00:00:00'),
 #  'Spain LaLiga',
 #  'Switzerland Super League']
 
-league_list = load_data(st.secrets["league_list_url"])
+
 
 season_list = ['ALL',
  '2008/2009',
