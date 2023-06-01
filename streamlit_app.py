@@ -13,10 +13,15 @@ def load_data(sheets_url):
 league_list = load_data(st.secrets["league_list_url"])
 country_list = load_data(st.secrets["country_list_url"])
 league_table = load_data(st.secrets["league_table_url"])
+test_matches = load_data(st.secrets["Test_matches_url"])
 
-filt_leag_8_9_England = league_table_df[(league_table_df['country']=='England') & (league_table_df['season']=='2009/2010')]
+sample = test_matches.sample(1)
+
+filt_leag_8_9_England = league_table[(league_table['country']=='England') & (league_table['season']=='2009/2010')]
 st.dataframe(filt_leag_8_9_England)
 
+st.write(f"League: {sample['League']}    Season: {sample['Season']}")
+st.write(f"{sample['home_team_name']} versus {sample['away_team_name']}")
 
 match_dict = {2766: {'date': Timestamp('2011-04-24 00:00:00'),
   'home_team_name': 'Bolton Wanderers',
