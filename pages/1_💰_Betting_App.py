@@ -3,7 +3,7 @@ import pandas as pd
 from pandas import Timestamp
 import random
 
-st.set_page_config(page_title="Betting", page_icon="💰")
+st.set_page_config(page_title="Betting", page_icon="📈")
 
 st.title("Applying Machine Learning for Soccer Betting Success")
 
