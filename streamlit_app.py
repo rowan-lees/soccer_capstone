@@ -10,10 +10,10 @@ def load_data(sheets_url):
     csv_url = sheets_url.replace("/edit?usp=sharing", "/export?format=csv")
     return pd.read_csv(csv_url)
 
-league_list = load_data(st.secrets["league_list_url"])
-country_list = load_data(st.secrets["country_list_url"])
-league_table = load_data(st.secrets["league_table_url"])
-test_matches = load_data(st.secrets["Test_matches_url"])
+league_list = pd.DataFrame(load_data(st.secrets["league_list_url"]))
+country_list = pd.DataFrame(load_data(st.secrets["country_list_url"]))
+league_table = pd.DataFrame(load_data(st.secrets["league_table_url"]))
+test_matches = pd.DataFrame(load_data(st.secrets["Test_matches_url"]))
 
 sample = test_matches.sample(1)
 
