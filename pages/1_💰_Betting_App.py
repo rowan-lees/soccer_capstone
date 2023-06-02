@@ -71,7 +71,11 @@ season_list = ['ALL',
  '2014/2015',
  '2015/2016']
 
-current_table = filtered_table(match_data, sample['season'], sample['League'], sample['stage'])
+samp_season = sample['season']
+samp_league = sample['League']
+samp_stage = sample['stage']
+
+current_table = filtered_table(match_data, samp_season, samp_league, samp_stage)
 st.dataframe(current_table)
 
 league_selection = st.selectbox("Select League",league_list)
