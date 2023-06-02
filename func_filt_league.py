@@ -5,7 +5,7 @@ from func_master_league_table import f_league_table
 
 def filtered_table(match_data, season, league, stage):
     filtered = match_data[(match_data["season"] == season) \
-                & (match_data["league"] == league) \
+                & (match_data["League"] == league) \
                 & (match_data["stage"] < stage)]
 
     filtered_league_table = f_league_table(filtered)
