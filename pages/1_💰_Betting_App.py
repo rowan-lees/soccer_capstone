@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 from pandas import Timestamp
 import random
+from func_filt_league import filtered_table
 
 st.set_page_config(page_title="Betting", page_icon="📈")
 
@@ -18,11 +19,12 @@ league_list = load_data(st.secrets["league_list_url"])
 country_list = load_data(st.secrets["country_list_url"])
 league_table = load_data(st.secrets["league_table_url"])
 test_matches = load_data(st.secrets["Test_matches_url"])
+match_data = load_data(st.secrets["match_data_url"])
 
 sample = test_matches.sample(1)
 
 filt_leag_8_9_England = league_table[(league_table['country']=='England') & (league_table['season']=='2009/2010')]
-st.dataframe(filt_leag_8_9_England)
+# st.dataframe(filt_leag_8_9_England)
 
 st.write(f"League: {sample['League'].values[0]}")
 st.write(f"Season: {sample['season'].values[0]}")
@@ -69,7 +71,8 @@ season_list = ['ALL',
  '2014/2015',
  '2015/2016']
 
-
+current_table = filtered_table(match_data, sample['season'], sample['League'], sample['stage'])
+st.dataframe(current_table)
 
 league_selection = st.selectbox("Select League",league_list)
 season_selection = st.selectbox("Select Season",season_list)
