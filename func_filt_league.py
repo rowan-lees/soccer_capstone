@@ -7,7 +7,7 @@ def filtered_table(match_data, season, league, stage):
     
     assert isinstance(season, object), "Season must be a string"
     assert isinstance(league, object), "League must be a string"
-    assert isinstance(stage, int), "Stage must be an integer"
+    assert stage.dtype == 'int64', "Stage must be an integer"
     
     filtered = match_data[(match_data["season"] == season) \
                 & (match_data["League"] == league) \
