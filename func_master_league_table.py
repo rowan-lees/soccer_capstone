@@ -1,3 +1,5 @@
+import pandas as pd 
+
 def f_league_table(match_df):
     # create an empty dictionary to store the teams' stats
     team_stats = {}
