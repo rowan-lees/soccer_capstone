@@ -23,7 +23,7 @@ match_data = load_data(st.secrets["match_data_url"])
 
 sample = test_matches.sample(1)
 
-filt_leag_8_9_England = league_table[(league_table['country']=='England') & (league_table['season']=='2009/2010')]
+# filt_leag_8_9_England = league_table[(league_table['country']=='England') & (league_table['season']=='2009/2010')]
 # st.dataframe(filt_leag_8_9_England)\
 
 st.markdown(f'<h1 style="color: #2C74D3;">{sample["home_team_name"].values[0]}  \
