@@ -24,7 +24,7 @@ sample = test_matches.sample(1)
 samp_season = sample['season'].values[0]
 samp_league = sample['League'].values[0]
 samp_stage = sample['stage'].values[0]
-samp_country = sample['country'].values[0]
+samp_country = sample['Country'].values[0]
 samp_h_team = sample["home_team_name"].values[0]
 samp_a_team = sample["away_team_name"].values[0]
 
