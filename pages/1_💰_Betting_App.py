@@ -48,7 +48,7 @@ css = """
 # Display image with white border using CSS class
 st.markdown(css, unsafe_allow_html=True)
 st.image(flag_url, caption='Image Caption', output_format='JPEG', width=300, 
-         unsafe_allow_html=True, use_column_width=False, 
+         use_column_width=False, 
          format="PNG", 
          class_='image-with-border')
 
