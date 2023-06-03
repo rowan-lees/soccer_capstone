@@ -24,43 +24,13 @@ match_data = load_data(st.secrets["match_data_url"])
 sample = test_matches.sample(1)
 
 filt_leag_8_9_England = league_table[(league_table['country']=='England') & (league_table['season']=='2009/2010')]
-# st.dataframe(filt_leag_8_9_England)
+# st.dataframe(filt_leag_8_9_England)\
 
+st.markdown(f"##{sample['home_team_name'].values[0]}  vs  {sample['away_team_name'].values[0]}")
 st.write(f"League: {sample['League'].values[0]}")
 st.write(f"Season: {sample['season'].values[0]}")
 st.write(f"Match Day #{sample['stage'].values[0]}")
-st.write(f"{sample['home_team_name'].values[0]}  vs  {sample['away_team_name'].values[0]}")
 
-match_dict = {2766: {'date': Timestamp('2011-04-24 00:00:00'),
-  'home_team_name': 'Bolton Wanderers',
-  'away_team_name': 'Arsenal'},
- 3442: {'date': Timestamp('2013-02-24 00:00:00'),
-  'home_team_name': 'Manchester City',
-  'away_team_name': 'Chelsea'},
- 2768: {'date': Timestamp('2011-04-23 00:00:00'),
-  'home_team_name': 'Chelsea',
-  'away_team_name': 'West Ham United'},
- 2862: {'date': Timestamp('2010-10-23 00:00:00'),
-  'home_team_name': 'West Ham United',
-  'away_team_name': 'Newcastle United'},
- 2550: {'date': Timestamp('2010-11-28 00:00:00'),
-  'home_team_name': 'Tottenham Hotspur',
-  'away_team_name': 'Liverpool'},
- 3738: {'date': Timestamp('2013-12-28 00:00:00'),
-  'home_team_name': 'West Ham United',
-  'away_team_name': 'West Bromwich Albion'},
- 4652: {'date': Timestamp('2016-04-09 00:00:00'),
-  'home_team_name': 'Manchester City',
-  'away_team_name': 'West Bromwich Albion'},
- 1746: {'date': Timestamp('2008-10-29 00:00:00'),
-  'home_team_name': 'Aston Villa',
-  'away_team_name': 'Blackburn Rovers'},
- 2377: {'date': Timestamp('2010-04-04 00:00:00'),
-  'home_team_name': 'Birmingham City',
-  'away_team_name': 'Liverpool'},
- 3648: {'date': Timestamp('2013-11-02 00:00:00'),
-  'home_team_name': 'West Ham United',
-  'away_team_name': 'Aston Villa'}}
 
 season_list = ['ALL',
  '2008/2009',
@@ -76,16 +46,9 @@ samp_season = sample['season'].values[0]
 samp_league = sample['League'].values[0]
 samp_stage = sample['stage'].values[0]
 
-# samp_season = samp_season.astype(str)
-# samp_league = samp_league.astype(str)
-# samp_stage = samp_stage.astype(int)
-
-# st.write(type(samp_season))
-# st.write(type(samp_league))
-# st.write(type(samp_stage))
-
 
 current_table = filtered_table(match_data, samp_season, samp_league, samp_stage)
+
 st.dataframe(current_table)
 
 league_selection = st.selectbox("Select League",league_list)

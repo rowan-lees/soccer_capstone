@@ -18,5 +18,7 @@ def filtered_table(match_data, season, league, stage):
                 & (match_data["stage"] < stage)]
 
     filtered_league_table = f_league_table(filtered)
+    filtered_league_table = filtered_league_table.set_index('rank')
+    columns_to_drop = ['league_id', 'season', 'country']
 
     return filtered_league_table 
