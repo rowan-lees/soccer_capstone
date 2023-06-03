@@ -20,6 +20,7 @@ league_table = load_data(st.secrets["league_table_url"])
 test_matches = load_data(st.secrets["Test_matches_url"])
 match_data = load_data(st.secrets["match_data_url"])
 
+#variables
 sample = test_matches.sample(1)
 samp_season = sample['season'].values[0]
 samp_league = sample['League'].values[0]
@@ -27,13 +28,30 @@ samp_stage = sample['stage'].values[0]
 samp_country = sample['Country'].values[0]
 samp_h_team = sample["home_team_name"].values[0]
 samp_a_team = sample["away_team_name"].values[0]
+flag_url = Country_league_flag[Country_league_flag['League'] == (samp_league)]['URL'].values[0]
 
 # filt_leag_8_9_England = league_table[(league_table['country']=='England') & (league_table['season']=='2009/2010')]
 # st.dataframe(filt_leag_8_9_England)\
 
 st.markdown(f'<h1 style="color: #2C74D3;">{samp_h_team}  vs  {samp_a_team}</h1>', unsafe_allow_html=True)
 
-flag_url = Country_league_flag[Country_league_flag['League'] == (samp_league)]['URL'].values[0]
+
+# Define CSS class with white border
+css = """
+    <style>
+    .image-with-border {
+        border: 1px solid white;
+    }
+    </style>
+"""
+
+# Display image with white border using CSS class
+st.markdown(css, unsafe_allow_html=True)
+st.image(flag_url, caption='Image Caption', output_format='JPEG', width=300, 
+         unsafe_allow_html=True, use_column_width=False, 
+         format="PNG", 
+         class_='image-with-border')
+
 
 st.image(flag_url, caption={samp_country}, width=50,output_format='JPEG',style='border: 1px solid white;')
 st.write(f"League: {samp_league}")
