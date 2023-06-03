@@ -75,6 +75,10 @@ samp_season = sample['season']
 samp_league = sample['League']
 samp_stage = sample['stage']
 
+st.write(type(samp_season))
+st.write(type(samp_league))
+st.write(type(samp_stage))
+
 current_table = filtered_table(match_data, samp_season, samp_league, samp_stage)
 st.dataframe(current_table)
 
