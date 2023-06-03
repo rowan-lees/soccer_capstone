@@ -5,12 +5,13 @@ from func_master_league_table import f_league_table
 
 def filtered_table(match_data, season, league, stage):
     
-    assert isinstance(season, object), "Season must be a string"
-    assert isinstance(league, object), "League must be a string"
-    assert stage.dtype == 'int64', "Stage must be an integer"
+    assert isinstance(season, object), "sample Season must be a string"
+    assert isinstance(league, object), "sample League must be a string"
+    assert stage.dtype == 'int64', "sample Stage must be an integer"
     
-    print(match_data["season"].dtype)
-    print(match_data["season"].shape)
+    assert match_data["season"].dtype == 'object', "match Season must be a string"
+    assert match_data["League"].dtype == 'object', "match League must be a string"
+    assert match_data["stage"].dtype == 'int64', "match Stage must be an integer"
 
     filtered = match_data[(match_data["season"] == season) \
                 & (match_data["League"] == league) \
