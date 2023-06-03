@@ -76,8 +76,8 @@ samp_league = sample['League']
 samp_stage = sample['stage']
 
 samp_season = samp_season.astype(str)
-samp_league = samp_season.astype(str)
-samp_stage = samp_season.astype(int)
+samp_league = samp_league.astype(str)
+samp_stage = samp_stage.astype(int)
 
 st.write(samp_season.dtype)
 st.write(type(samp_league))
