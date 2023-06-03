@@ -80,8 +80,14 @@ samp_league = samp_league.astype(str)
 samp_stage = samp_stage.astype(int)
 
 st.write(samp_season.dtype)
-st.write(type(samp_league))
-st.write(type(samp_stage))
+st.write(samp_season.shape)
+
+st.write(samp_league.dtype)
+st.write(samp_league.shape)
+
+st.write(samp_stage.dtype)
+st.write(samp_stage.shape)
+
 
 current_table = filtered_table(match_data, samp_season, samp_league, samp_stage)
 st.dataframe(current_table)

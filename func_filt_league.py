@@ -5,7 +5,7 @@ from func_master_league_table import f_league_table
 
 def filtered_table(match_data, season, league, stage):
     
-    assert isinstance(season, str), "Season must be a string"
+    assert isinstance(season, object), "Season must be a string"
     assert isinstance(league, str), "League must be a string"
     assert isinstance(stage, int), "Stage must be an integer"
     
