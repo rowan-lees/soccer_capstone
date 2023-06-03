@@ -29,8 +29,8 @@ filt_leag_8_9_England = league_table[(league_table['country']=='England') & (lea
 st.markdown(f'<h1 style="color: #2C74D3;">{sample["home_team_name"].values[0]}  \
             vs  {sample["away_team_name"].values[0]}</h1>', unsafe_allow_html=True)
 
-st.image(https://creazilla-store.fra1.digitaloceanspaces.com/emojis/55698/england-flag-emoji-clipart-xl.png,\
-        width=50)
+st.image("https://creazilla-store.fra1.digitaloceanspaces.com/emojis/55698/england-flag-emoji-clipart-xl.png",\
+        width=50
 st.write(f"League: {sample['League'].values[0]}")
 st.write(f"Season: {sample['season'].values[0]}")
 st.write(f"Match Day #{sample['stage'].values[0]}")
