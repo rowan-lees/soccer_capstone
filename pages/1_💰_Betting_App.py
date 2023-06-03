@@ -79,14 +79,11 @@ samp_stage = sample['stage'].values[0]
 # samp_league = samp_league.astype(str)
 # samp_stage = samp_stage.astype(int)
 
-st.write(samp_season.dtype)
-st.write(samp_season.shape)
+st.write(type(samp_season))
 
-st.write(samp_league.dtype)
-st.write(samp_league.shape)
+st.write(type(samp_league))
 
-st.write(samp_stage.dtype)
-st.write(samp_stage.shape)
+st.write(type(samp_stage))
 
 
 current_table = filtered_table(match_data, samp_season, samp_league, samp_stage)
