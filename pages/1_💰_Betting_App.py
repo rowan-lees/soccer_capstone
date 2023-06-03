@@ -28,6 +28,7 @@ filt_leag_8_9_England = league_table[(league_table['country']=='England') & (lea
 
 st.write(f"League: {sample['League'].values[0]}")
 st.write(f"Season: {sample['season'].values[0]}")
+st.write(f"Match Day #{sample['stage'].values[0]}")
 st.write(f"{sample['home_team_name'].values[0]}  vs  {sample['away_team_name'].values[0]}")
 
 match_dict = {2766: {'date': Timestamp('2011-04-24 00:00:00'),
