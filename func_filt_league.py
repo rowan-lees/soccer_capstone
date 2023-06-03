@@ -20,6 +20,6 @@ def filtered_table(match_data, season, league, stage):
     filtered_league_table = f_league_table(filtered)
     filtered_league_table = filtered_league_table.set_index('rank')
     columns_to_drop = ['league_id', 'season', 'country']
-    filtered_league_table = filtered_league_table.drop(columns_to_drop)
+    filtered_league_table = filtered_league_table.drop(columns = columns_to_drop)
 
     return filtered_league_table 

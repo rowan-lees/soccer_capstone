@@ -26,7 +26,7 @@ sample = test_matches.sample(1)
 filt_leag_8_9_England = league_table[(league_table['country']=='England') & (league_table['season']=='2009/2010')]
 # st.dataframe(filt_leag_8_9_England)\
 
-st.markdown(f"##{sample['home_team_name'].values[0]}  vs  {sample['away_team_name'].values[0]}")
+st.markdown(f"## {sample['home_team_name'].values[0]}  vs  {sample['away_team_name'].values[0]}")
 st.write(f"League: {sample['League'].values[0]}")
 st.write(f"Season: {sample['season'].values[0]}")
 st.write(f"Match Day #{sample['stage'].values[0]}")
