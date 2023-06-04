@@ -3,6 +3,7 @@ import pandas as pd
 from pandas import Timestamp
 import random
 from func_filt_league import filtered_table
+import graph_funcs as gf
 
 st.set_page_config(page_title="Betting", page_icon="📈")
 
@@ -35,7 +36,7 @@ flag_url = Country_league_flag[Country_league_flag['League'] == (samp_league)]['
 
 st.markdown(f'<h1 style="color: #2C74D3;">{samp_h_team}  vs  {samp_a_team}</h1>', unsafe_allow_html=True)
 
-st.image(flag_url, caption={samp_country}, width=50)
+st.image(flag_url, width=50)
 st.write(f"League: {samp_league}")
 st.write(f"Season: {samp_season}")
 st.write(f"Match Day #{samp_stage}")
@@ -57,6 +58,9 @@ season_list = ['ALL',
 current_table = filtered_table(match_data, samp_season, samp_league, samp_stage)
 
 st.dataframe(current_table)
+
+fig = gf.five_match_line_plt(match_data,samp_league, samp_season, samp_stage,samp_h_team,samp_a_team)   #match_data, league, season, stage, h_team, a_team
+st.pyplot(fig)
 
 # league_selection = st.selectbox("Select League",league_list)
 # season_selection = st.selectbox("Select Season",season_list)
