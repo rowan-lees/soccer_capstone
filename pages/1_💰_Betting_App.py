@@ -60,7 +60,7 @@ season_list = ['ALL',
 current_table = filtered_table(match_data, samp_season, samp_league, samp_stage)
 
 st.dataframe(current_table)
-st.set_option('deprecation.showPyplotGlobalUse', False)
+# st.set_option('deprecation.showPyplotGlobalUse', False)
 fig = gf.five_match_line_plt(match_data,samp_league, samp_season, samp_stage,samp_h_team,samp_a_team)   #match_data, league, season, stage, h_team, a_team
 
 st.pyplot(fig)
