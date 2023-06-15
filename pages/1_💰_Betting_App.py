@@ -95,8 +95,10 @@ away_t = match_data[
 
 
 st.dataframe(current_table)
-st.dataframe(home_t)
-st.dataframe(away_t)
+st.write(f"{samp_h_team} Last 5 Matches this season")
+st.dataframe(home_t.tail(5))
+st.write(f"{samp_a_team} Last 5 Matches this season")
+st.dataframe(away_t.tail(5))
 st.set_option('deprecation.showPyplotGlobalUse', False)
 fig = gf.five_match_line_plt(match_data,samp_league, samp_season, samp_stage,samp_h_team,samp_a_team)   #match_data, league, season, stage, h_team, a_team
 
