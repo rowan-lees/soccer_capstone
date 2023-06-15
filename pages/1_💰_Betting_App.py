@@ -58,7 +58,22 @@ season_list = ['ALL',
 
 current_table = filtered_table(match_data, samp_season, samp_league, samp_stage)
 
+home_t = match_data[
+    (match_data['season']==samp_season) & 
+    (match_data['League']==samp_league) & 
+    (match_data['stage'] < samp_stage) & 
+    ((match_data['home_team_name']==samp_h_team) | (match_data['away_team_name']==samp_h_team))]
+
+away_t = match_data[
+    (match_data['season']==samp_season) & 
+    (match_data['League']==samp_league) & 
+    (match_data['stage'] < samp_stage) & 
+    ((match_data['home_team_name']==samp_a_team) | (match_data['away_team_name']==samp_a_team))]
+
+
 st.dataframe(current_table)
+st.dataframe(home_t)
+st.dataframe(away_t)
 st.set_option('deprecation.showPyplotGlobalUse', False)
 fig = gf.five_match_line_plt(match_data,samp_league, samp_season, samp_stage,samp_h_team,samp_a_team)   #match_data, league, season, stage, h_team, a_team
 
