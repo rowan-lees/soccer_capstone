@@ -24,7 +24,7 @@ def five_match_line_plt(match_data, league, season, stage, h_team, a_team):
             team_data = form_melt[form_melt['team_name'] == team]
             # team_data_smooth = sm.nonparametric.lowess(team_data['form_avg_pts'], team_data['stage'],frac=0.2)
             # plt.plot(team_data_smooth[:,0], team_data_smooth[:,1], label=team, alpha=0.7)
-            plt.plot(team_data['form_avg_pts'], team_data['stage'] ,label=team, alpha=0.7)
+            plt.plot(team_data['stage'], team_data['form_avg_pts'], label=team, alpha=0.7)
         
 
         plt.legend(bbox_to_anchor=(1.05, 1))
