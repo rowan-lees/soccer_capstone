@@ -26,8 +26,7 @@ match_data = load_data(st.secrets["match_data_url"])
 sample = test_matches.sample(1)
 samp_season = sample['season'].values[0]
 samp_league = sample['League'].values[0]
-# samp_stage = sample['stage'].values[0]
-samp_stage = np.int64(4)
+samp_stage = sample['stage'].values[0]
 samp_country = sample['Country'].values[0]
 samp_h_team = sample["home_team_name"].values[0]
 samp_a_team = sample["away_team_name"].values[0]
@@ -60,7 +59,7 @@ season_list = ['ALL',
 current_table = filtered_table(match_data, samp_season, samp_league, samp_stage)
 
 st.dataframe(current_table)
-# st.set_option('deprecation.showPyplotGlobalUse', False)
+st.set_option('deprecation.showPyplotGlobalUse', False)
 fig = gf.five_match_line_plt(match_data,samp_league, samp_season, samp_stage,samp_h_team,samp_a_team)   #match_data, league, season, stage, h_team, a_team
 
 st.pyplot(fig)
