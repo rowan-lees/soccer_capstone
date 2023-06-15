@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 
 
 def five_match_line_plt(match_data, league, season, stage, h_team, a_team):
-    if stage > 5:
+    if stage < 5:
         return "No Data as less than 5 games played"
     else:
         current_season = match_data[(match_data['season']==season) & (match_data['League']==league)  & (match_data['stage'] > 5) & (match_data['stage'] < stage)][['stage', 'h_five_form_pts', 'a_five_form_pts','home_team_name','away_team_name']]
