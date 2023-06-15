@@ -62,13 +62,36 @@ home_t = match_data[
     (match_data['season']==samp_season) & 
     (match_data['League']==samp_league) & 
     (match_data['stage'] < samp_stage) & 
-    ((match_data['home_team_name']==samp_h_team) | (match_data['away_team_name']==samp_h_team))]
+    ((match_data['home_team_name']==samp_h_team) | (match_data['away_team_name']==samp_h_team))
+    ][['League',
+        'season',
+       'stage',
+       'date',
+       'home_team_name',
+       'away_team_name',
+       'home_team_goal',
+       'away_team_goal',
+       'home_result',
+       'h_five_form_pts',
+       'a_five_form_pts']]
 
 away_t = match_data[
     (match_data['season']==samp_season) & 
     (match_data['League']==samp_league) & 
     (match_data['stage'] < samp_stage) & 
-    ((match_data['home_team_name']==samp_a_team) | (match_data['away_team_name']==samp_a_team))]
+    ((match_data['home_team_name']==samp_a_team) | (match_data['away_team_name']==samp_a_team))
+    ][['League',
+        'season',
+       'stage',
+       'date',
+       'home_team_name',
+       'away_team_name',
+       'home_team_goal',
+       'away_team_goal',
+       'home_result',
+       'h_five_form_pts',
+       'a_five_form_pts']]
+
 
 
 st.dataframe(current_table)
