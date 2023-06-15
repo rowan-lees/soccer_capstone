@@ -19,8 +19,6 @@ def five_match_line_plt(match_data, league, season, stage, h_team, a_team):
         form_melt = form_melt[form_melt['team_name'].isin(teams)]
         form_melt['form_avg_pts'] = form_melt['form_pts'] / 5
 
-        form_melt.head()
-
         plt.figure(figsize=(8,6))
         for team in teams:
             team_data = form_melt[form_melt['team_name'] == team]
