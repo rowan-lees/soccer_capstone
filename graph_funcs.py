@@ -22,11 +22,13 @@ def five_match_line_plt(match_data, league, season, stage, h_team, a_team):
         plt.figure(figsize=(8,6))
         for team in teams:
             team_data = form_melt[form_melt['team_name'] == team]
-            team_data_smooth = sm.nonparametric.lowess(team_data['form_avg_pts'], team_data['stage'],frac=0.2)
-            plt.plot(team_data_smooth[:,0], team_data_smooth[:,1], label=team, alpha=0.7)
+            # team_data_smooth = sm.nonparametric.lowess(team_data['form_avg_pts'], team_data['stage'],frac=0.2)
+            # plt.plot(team_data_smooth[:,0], team_data_smooth[:,1], label=team, alpha=0.7)
+            plt.plot(team_data['stage'], team_data['form_avg_pts'],label=team, alpha=0.7)
+        
 
         plt.legend(bbox_to_anchor=(1.05, 1))
         plt.title("5 Match Form for Home and Away team")
-        plt.ylabel("Average Points Accumluted over Past 5 Games")
+        plt.ylabel("Rolling Average of Points Accumluted over Past 5 Matches")
         plt.xlabel(f"Match Day of {season} Season")
         plt.show()

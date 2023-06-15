@@ -80,19 +80,28 @@ away_t = match_data[
     (match_data['League']==samp_league) & 
     (match_data['stage'] < samp_stage) & 
     ((match_data['home_team_name']==samp_a_team) | (match_data['away_team_name']==samp_a_team))
-    ][['League',
-        'season',
-       'stage',
-       'date',
+    ][['stage',
        'home_team_name',
        'away_team_name',
+       'home_result',
        'home_team_goal',
        'away_team_goal',
-       'home_result',
-       'h_five_form_pts',
+        'h_five_form_pts',
        'a_five_form_pts']]
 
 
+#betting functionality
+
+wager_str = st.text_input("Enter your $$ wager")
+
+try:
+    wager = float(wager_str)
+except ValueError:
+    st.warning("Please enter a valid wager (e.g. 100 or 55.55), please exclude the dollar sign")
+
+st.write("Wager entered:", wager_str)
+
+#Statistical Plots
 
 st.dataframe(current_table)
 st.write(f"{samp_h_team} Last 5 Matches this season")
@@ -121,14 +130,6 @@ st.pyplot(fig)
 #     sample_match = generate_random_match()
 #     match_generated = True
 
-wager_str = st.text_input("Enter your $$ wager")
-
-try:
-    wager = float(wager_str)
-except ValueError:
-    st.warning("Please enter a valid wager (e.g. 100 or 55.55), please exclude the dollar sign")
-
-st.write("Wager entered:", wager_str)
 
 # if match_generated:
 #     # Display the match information
