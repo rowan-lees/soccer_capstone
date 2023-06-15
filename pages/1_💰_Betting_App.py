@@ -4,6 +4,7 @@ from pandas import Timestamp
 import random
 from func_filt_league import filtered_table
 import graph_funcs as gf
+import numpy as np
 
 st.set_page_config(page_title="Betting", page_icon="📈")
 
@@ -26,7 +27,7 @@ sample = test_matches.sample(1)
 samp_season = sample['season'].values[0]
 samp_league = sample['League'].values[0]
 # samp_stage = sample['stage'].values[0]
-samp_stage = int(4)
+samp_stage = np.int64(4)
 samp_country = sample['Country'].values[0]
 samp_h_team = sample["home_team_name"].values[0]
 samp_a_team = sample["away_team_name"].values[0]
