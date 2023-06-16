@@ -50,13 +50,12 @@ st.markdown(f'<h1 style="text-align: center; color: white;">vs</h1>', unsafe_all
 st.markdown(f'<h1 style="text-align: center; color: red;">{samp_a_team}</h1>', unsafe_allow_html=True)
 
 
-sample_match_data = [
-    {"League": samp_league,
+sample_match_data = {
+    "League": samp_league,
     "Season": samp_season,
     "Match Day": samp_stage}
-]
 
-sample_match_data_df = pd.DataFrame([sample_match_data])
+sample_match_data_df = pd.DataFrame(sample_match_data)
 st.table(sample_match_data_df.style.hide_index())
 
 
