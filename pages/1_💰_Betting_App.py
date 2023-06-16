@@ -44,19 +44,6 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# st.markdown(
-#     f'<h1 style="text-align: center; color: #2C74D3; margin-bottom: 0;">{samp_h_team}</h1>', 
-#     unsafe_allow_html=True
-# )
-# st.markdown(
-#     f'<h1 style="text-align: center; color: white; margin: 0;">vs</h1>', 
-#     unsafe_allow_html=True
-# )
-# st.markdown(
-#     f'<h1 style="text-align: center; color: red; margin-top: 0;">{samp_a_team}</h1>', 
-#     unsafe_allow_html=True
-# )
-
 st.markdown(
     f'<h1 style="text-align: center; color: #2C74D3; line-height: 0.8;">{samp_h_team}</h1>', 
     unsafe_allow_html=True
@@ -92,6 +79,10 @@ season_list = ['ALL',
 
 
 
+st.markdown(
+    f'<h3 style="text-align: center; color: white; line-height: 0.8;">Current League Table</h3>', 
+    unsafe_allow_html=True
+)
 
 current_table = filtered_table(match_data, samp_season, samp_league, samp_stage)
 
