@@ -55,9 +55,9 @@ st.markdown(f'<h1 style="text-align: center; color: red;">{samp_a_team}</h1>', u
 # st.write(f"Match Day #{samp_stage}")
 
 sample_match_data = [
-    {"League": samp_league},
-    {"Season": samp_season},
-    {"Match Day": samp_stage}
+    {"League": samp_league,
+    "Season": samp_season,
+    "Match Day": samp_stage}
 ]
 
 st.table(sample_match_data)
