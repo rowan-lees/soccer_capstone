@@ -135,6 +135,9 @@ away_t = match_data[
 
 #odds both model and bookie
 
+#markdown
+st.markdown(f'<h3 style="text-align: center; color: white; line-height: 0.8;">Match Odds</h3>', unsafe_allow_html=True)
+
 h_win_odds = 2
 h_loss_odds = 1.5
 draw_odds = 4
@@ -153,11 +156,6 @@ st.markdown(
 )
 
 
-#markdown
-st.markdown(f'<h3 style="text-align: center; color: white; line-height: 0.8;">Match Odds</h3>', unsafe_allow_html=True)
-
-
-
 #betting functionality
 
 #markdown
@@ -173,6 +171,14 @@ if wager_str:
         # Display the result to the user
         st.write("Betting Outcome Calculation:")
         # Code for calculating the betting outcome
+        h_winnings = h_win_odds * wager
+        d_winnings = draw_odds * wager
+        a_winnings = a_win_odds * wager
+
+        st.write(f"Home Win Winnings: ${h_winnings}")
+        st.write(f"Draw Winnings: ${d_winnings}")
+        st.write(f"Away Win Winnings: ${a_winnings}")
+
     except ValueError:
         st.warning("Please enter a valid wager (e.g. 100 or 55.55), excluding the dollar sign.")
 
