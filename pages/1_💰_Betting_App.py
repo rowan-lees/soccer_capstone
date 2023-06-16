@@ -173,7 +173,7 @@ if wager_str:
         # Code for calculating the betting outcome
         h_winnings = h_win_odds * wager
         d_winnings = draw_odds * wager
-        a_winnings = a_win_odds * wager
+        a_winnings = h_loss_odds * wager
 
         st.write(f"Home Win Winnings: ${h_winnings}")
         st.write(f"Draw Winnings: ${d_winnings}")
