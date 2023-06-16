@@ -56,7 +56,8 @@ sample_match_data = {
     "Match Day": [samp_stage]}
 
 sample_match_data_df = pd.DataFrame(sample_match_data)
-st.table(sample_match_data_df.style.hide_index())
+sample_match_data_df = sample_match_data_df.rename_axis(index=None)  # Remove the index label
+st.table(sample_match_data_df)
 
 
 season_list = ['ALL',
