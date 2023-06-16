@@ -53,6 +53,7 @@ if 'match_data' not in st.session_state:
 # Retrieve the match data from session state
 samp_season = st.session_state.match_data['season']
 samp_league = st.session_state.match_data['league']
+samp_country = st.session_state.match_data['country']
 samp_stage = st.session_state.match_data['stage']
 samp_h_team = st.session_state.match_data['home_team']
 samp_a_team = st.session_state.match_data['away_team']
