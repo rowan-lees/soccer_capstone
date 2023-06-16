@@ -8,7 +8,6 @@ import numpy as np
 
 st.set_page_config(page_title="Betting", page_icon="📈")
 
-# st.title("Applying Machine Learning for Soccer Betting Success")
 
 # Read in data from the Google Sheet.
 # Uses st.cache_data to only rerun when the query changes or after 10 min.
@@ -17,25 +16,39 @@ def load_data(sheets_url):
     csv_url = sheets_url.replace("/edit?usp=sharing", "/export?format=csv")
     return pd.read_csv(csv_url)
 
+#load data
 Country_league_flag = load_data(st.secrets["Country_league_flag_url"])
 league_table = load_data(st.secrets["league_table_url"])
 test_matches = load_data(st.secrets["Test_matches_url"])
 match_data = load_data(st.secrets["match_data_url"])
 
-#variables
-sample = test_matches.sample(1)
-samp_season = sample['season'].values[0]
-samp_league = sample['League'].values[0]
-samp_stage = sample['stage'].values[0]
-samp_country = sample['Country'].values[0]
-samp_h_team = sample["home_team_name"].values[0]
-samp_a_team = sample["away_team_name"].values[0]
-flag_url = Country_league_flag[Country_league_flag['League'] == (samp_league)]['URL'].values[0]
+# Define the match data generation function
+def generate_sample_match(test_matches, Country_league_flag):
+    sample = test_matches.sample(1)
+    samp_season = sample['season'].values[0]
+    samp_league = sample['League'].values[0]
+    samp_stage = sample['stage'].values[0]
+    samp_country = sample['Country'].values[0]
+    samp_h_team = sample["home_team_name"].values[0]
+    samp_a_team = sample["away_team_name"].values[0]
+    flag_url = Country_league_flag[Country_league_flag['League'] == (samp_league)]['URL'].values[0]
+    
+    return samp_season, samp_league, samp_country, samp_stage, samp_h_team, samp_a_team, flag_url
 
-# filt_leag_8_9_England = league_table[(league_table['country']=='England') & (league_table['season']=='2009/2010')]
-# st.dataframe(filt_leag_8_9_England)\
 
-# st.image(flag_url, width=200)
+# Check if the match data is already stored in session state
+if 'match_data' not in st.session_state:
+    # Generate the sample match data and store it in session state
+    (samp_season, samp_league, samp_country, samp_stage, samp_h_team, samp_a_team, flag_url) = generate_sample_match(test_matches, Country_league_flag)
+    st.session_state.match_data = {
+                'season': samp_season,
+                'league': samp_league,
+                'country': samp_country,
+                'stage': samp_stage,
+                'home_team': samp_h_team,
+                'away_team': samp_a_team
+    }
+
 
 st.markdown(
     f'<div style="display: flex; justify-content: center;">'
@@ -122,27 +135,31 @@ st.markdown(f'<h3 style="text-align: center; color: white; line-height: 0.8;">Ma
 #markdown
 st.markdown(f'<h3 style="text-align: center; color: white; line-height: 0.8;">Betting</h3>', unsafe_allow_html=True)
 
-# wager_str = st.text_input("Enter your $$ wager")
+# Get the user's wager input
+wager_str = st.text_input("Enter your wager:")
 
-# try:
-#     wager = float(wager_str)
-# except ValueError:
-#     st.warning("Please enter a valid wager (e.g. 100 or 55.55), please exclude the dollar sign")
-
-# st.write("Wager entered:", wager_str)
-
-
-with st.form("wager_form"):
-    wager_str = st.text_input("Enter your $$ wager")
-    wager_submit = st.form_submit_button("Submit")
-
-if wager_submit:
+if wager_str:
     try:
         wager = float(wager_str)
-        st.write("Wager entered:", wager_str)
-        # Perform calculations using the wager amount
+        # Perform the calculation on the betting outcome using the stored match data and the wager
+        # Display the result to the user
+        st.write("Betting Outcome Calculation:")
+        # Code for calculating the betting outcome
     except ValueError:
-        st.warning("Please enter a valid wager (e.g. 100 or 55.55), please exclude the dollar sign")
+        st.warning("Please enter a valid wager (e.g. 100 or 55.55), excluding the dollar sign.")
+
+
+# with st.form("wager_form"):
+#     wager_str = st.text_input("Enter your $$ wager")
+#     wager_submit = st.form_submit_button("Submit")
+
+# if wager_submit:
+#     try:
+#         wager = float(wager_str)
+#         st.write("Wager entered:", wager_str)
+#         # Perform calculations using the wager amount
+#     except ValueError:
+#         st.warning("Please enter a valid wager (e.g. 100 or 55.55), please exclude the dollar sign")
 
 
 
