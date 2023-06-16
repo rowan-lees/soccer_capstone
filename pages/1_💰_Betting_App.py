@@ -35,12 +35,21 @@ flag_url = Country_league_flag[Country_league_flag['League'] == (samp_league)]['
 # filt_leag_8_9_England = league_table[(league_table['country']=='England') & (league_table['season']=='2009/2010')]
 # st.dataframe(filt_leag_8_9_England)\
 
+# st.image(flag_url, width=200)
+
+st.markdown(
+    f'<div style="display: flex; justify-content: center;">'
+    f'<img src="{flag_url}" width="200" />'
+    f'</div>',
+    unsafe_allow_html=True
+)
+
 # st.markdown(f'<h1 style="text-align: center; color: #2C74D3;">{samp_h_team}  vs  {samp_a_team}</h1>', unsafe_allow_html=True)
 st.markdown(f'<h1 style="text-align: center; color: #2C74D3;">{samp_h_team}</h1>', unsafe_allow_html=True)
 st.markdown(f'<h1 style="text-align: center; color: white;">vs</h1>', unsafe_allow_html=True)
 st.markdown(f'<h1 style="text-align: center; color: red;">{samp_a_team}</h1>', unsafe_allow_html=True)
 
-st.image(flag_url, width=50)
+
 st.write(f"League: {samp_league}")
 st.write(f"Season: {samp_season}")
 st.write(f"Match Day #{samp_stage}")
