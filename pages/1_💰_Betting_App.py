@@ -122,14 +122,29 @@ st.markdown(f'<h3 style="text-align: center; color: white; line-height: 0.8;">Ma
 #markdown
 st.markdown(f'<h3 style="text-align: center; color: white; line-height: 0.8;">Betting</h3>', unsafe_allow_html=True)
 
-wager_str = st.text_input("Enter your $$ wager")
+# wager_str = st.text_input("Enter your $$ wager")
 
-try:
-    wager = float(wager_str)
-except ValueError:
-    st.warning("Please enter a valid wager (e.g. 100 or 55.55), please exclude the dollar sign")
+# try:
+#     wager = float(wager_str)
+# except ValueError:
+#     st.warning("Please enter a valid wager (e.g. 100 or 55.55), please exclude the dollar sign")
 
-st.write("Wager entered:", wager_str)
+# st.write("Wager entered:", wager_str)
+
+
+with st.form("wager_form"):
+    wager_str = st.text_input("Enter your $$ wager")
+    wager_submit = st.form_submit_button("Submit")
+
+if wager_submit:
+    try:
+        wager = float(wager_str)
+        st.write("Wager entered:", wager_str)
+        # Perform calculations using the wager amount
+    except ValueError:
+        st.warning("Please enter a valid wager (e.g. 100 or 55.55), please exclude the dollar sign")
+
+
 
 #markdown for league table
 st.markdown(f'<h3 style="text-align: center; color: white; line-height: 0.8;">Current League Table</h3>', unsafe_allow_html=True)
