@@ -133,7 +133,7 @@ st.write("Wager entered:", wager_str)
 
 #markdown for league table
 st.markdown(f'<h3 style="text-align: center; color: white; line-height: 0.8;">Current League Table</h3>', unsafe_allow_html=True)
-)
+
 #Statistical Plots
 
 st.dataframe(current_table)
