@@ -77,13 +77,6 @@ season_list = ['ALL',
  '2014/2015',
  '2015/2016']
 
-
-
-st.markdown(
-    f'<h3 style="text-align: center; color: white; line-height: 0.8;">Current League Table</h3>', 
-    unsafe_allow_html=True
-)
-
 current_table = filtered_table(match_data, samp_season, samp_league, samp_stage)
 
 home_t = match_data[
@@ -117,8 +110,17 @@ away_t = match_data[
         'h_five_form_pts',
        'a_five_form_pts']]
 
+#odds both model and bookie
+
+#markdown
+st.markdown(f'<h3 style="text-align: center; color: white; line-height: 0.8;">Match Odds</h3>', unsafe_allow_html=True)
+
+
 
 #betting functionality
+
+#markdown
+st.markdown(f'<h3 style="text-align: center; color: white; line-height: 0.8;">Betting</h3>', unsafe_allow_html=True)
 
 wager_str = st.text_input("Enter your $$ wager")
 
@@ -129,6 +131,9 @@ except ValueError:
 
 st.write("Wager entered:", wager_str)
 
+#markdown for league table
+st.markdown(f'<h3 style="text-align: center; color: white; line-height: 0.8;">Current League Table</h3>', unsafe_allow_html=True)
+)
 #Statistical Plots
 
 st.dataframe(current_table)
