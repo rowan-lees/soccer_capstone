@@ -32,14 +32,15 @@ def generate_sample_match(test_matches, Country_league_flag):
     samp_h_team = sample["home_team_name"].values[0]
     samp_a_team = sample["away_team_name"].values[0]
     flag_url = Country_league_flag[Country_league_flag['League'] == (samp_league)]['URL'].values[0]
+    samp_match_home_res = sample['home_result'].values[0]
     
-    return samp_season, samp_league, samp_country, samp_stage, samp_h_team, samp_a_team, flag_url
+    return samp_season, samp_league, samp_country, samp_stage, samp_h_team, samp_a_team, flag_url, samp_match_home_res
 
 
 # Check if the match data is already stored in session state
 if 'match_data' not in st.session_state:
     # Generate the sample match data and store it in session state
-    (samp_season, samp_league, samp_country, samp_stage, samp_h_team, samp_a_team, flag_url) = generate_sample_match(test_matches, Country_league_flag)
+    (samp_season, samp_league, samp_country, samp_stage, samp_h_team, samp_a_team, flag_url, samp_match_home_res) = generate_sample_match(test_matches, Country_league_flag)
     st.session_state.match_data = {
                 'season': samp_season,
                 'league': samp_league,
@@ -47,7 +48,8 @@ if 'match_data' not in st.session_state:
                 'stage': samp_stage,
                 'home_team': samp_h_team,
                 'away_team': samp_a_team,
-                'flag_url': flag_url
+                'flag_url': flag_url,
+                'samp_match_home_res': samp_match_home_res
     }
 
 # Retrieve the match data from session state
@@ -58,7 +60,7 @@ samp_stage = st.session_state.match_data['stage']
 samp_h_team = st.session_state.match_data['home_team']
 samp_a_team = st.session_state.match_data['away_team']
 flag_url = st.session_state.match_data['flag_url']
-
+samp_match_home_res = st.session_state.match_data['samp_match_home_res']
 
 st.markdown(
     f'<div style="display: flex; justify-content: center;">'
@@ -189,16 +191,29 @@ if wager_str:
             result = "away_win"
 
         if result:
-            # Code for calculating the betting outcome
+            match_result = samp_match_home_res
+
             if result == "home_win":
-                winnings = h_win_odds * wager
-                st.write(f"Match Result: Home Win")
+                if match_result == "Win":
+                    winnings = h_win_odds * wager
+                    st.write(f"Match Result: Home Win")
+                else:
+                    winnings = -wager
+                    st.write(f"Match Result: {match_result}")
             elif result == "draw":
-                winnings = draw_odds * wager
-                st.write(f"Match Result: Draw")
+                if match_result == "Draw":
+                    winnings = draw_odds * wager
+                    st.write(f"Match Result: Draw")
+                else:
+                    winnings = -wager
+                    st.write(f"Match Result: {match_result}")
             elif result == "away_win":
-                winnings = h_loss_odds * wager
-                st.write(f"Match Result: Away Win")
+                if match_result == "Loss":
+                    winnings = h_loss_odds * wager
+                    st.write(f"Match Result: Home Loss")
+                else:
+                    winnings = -wager
+                    st.write(f"Match Result: {match_result}")
 
             st.write(f"Potential Winnings: ${winnings}")
 
