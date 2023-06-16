@@ -46,8 +46,17 @@ if 'match_data' not in st.session_state:
                 'country': samp_country,
                 'stage': samp_stage,
                 'home_team': samp_h_team,
-                'away_team': samp_a_team
+                'away_team': samp_a_team,
+                'flag_url': flag_url
     }
+
+# Retrieve the match data from session state
+samp_season = st.session_state.match_data['season']
+samp_league = st.session_state.match_data['league']
+samp_stage = st.session_state.match_data['stage']
+samp_h_team = st.session_state.match_data['home_team']
+samp_a_team = st.session_state.match_data['away_team']
+flag_url = st.session_state.match_data['flag_url']
 
 
 st.markdown(
