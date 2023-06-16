@@ -4,6 +4,9 @@ def f_league_table(match_df):
     # create an empty dictionary to store the teams' stats
     team_stats = {}
 
+    # create an empty DataFrame to initalize 
+    league_table_df = pd.DataFrame()
+
     # loop through each match in the input DataFrame
     for i, row in match_df.iterrows():
         # get the home and away team names, and their scores

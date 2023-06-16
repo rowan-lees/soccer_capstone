@@ -135,6 +135,24 @@ away_t = match_data[
 
 #odds both model and bookie
 
+h_win_odds = 2
+h_loss_odds = 1.5
+draw_odds = 4
+
+st.markdown(
+    f'<h3 style="text-align: center; color: #2C74D3; line-height: 0.8;">{samp_h_team} WIN {h_win_odds}:1</h3>', 
+    unsafe_allow_html=True
+)
+st.markdown(
+    f'<h3 style="text-align: center; color: yellow; line-height: 0.8;">DRAW {draw_odds}:1</h3>', 
+    unsafe_allow_html=True
+)
+st.markdown(
+    f'<h3 style="text-align: center; color: red; line-height: 0.8;">{samp_a_team} WIN {h_loss_odds}:1</h3>', 
+    unsafe_allow_html=True
+)
+
+
 #markdown
 st.markdown(f'<h3 style="text-align: center; color: white; line-height: 0.8;">Match Odds</h3>', unsafe_allow_html=True)
 
