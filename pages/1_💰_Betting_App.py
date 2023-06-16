@@ -44,16 +44,29 @@ st.markdown(
     unsafe_allow_html=True
 )
 
+# st.markdown(
+#     f'<h1 style="text-align: center; color: #2C74D3; margin-bottom: 0;">{samp_h_team}</h1>', 
+#     unsafe_allow_html=True
+# )
+# st.markdown(
+#     f'<h1 style="text-align: center; color: white; margin: 0;">vs</h1>', 
+#     unsafe_allow_html=True
+# )
+# st.markdown(
+#     f'<h1 style="text-align: center; color: red; margin-top: 0;">{samp_a_team}</h1>', 
+#     unsafe_allow_html=True
+# )
+
 st.markdown(
-    f'<h1 style="text-align: center; color: #2C74D3; margin-bottom: 0;">{samp_h_team}</h1>', 
+    f'<h1 style="text-align: center; color: #2C74D3; line-height: 0.8;">{samp_h_team}</h1>', 
     unsafe_allow_html=True
 )
 st.markdown(
-    f'<h1 style="text-align: center; color: white; margin: 0;">vs</h1>', 
+    f'<h1 style="text-align: center; color: white; line-height: 0.8;">vs</h1>', 
     unsafe_allow_html=True
 )
 st.markdown(
-    f'<h1 style="text-align: center; color: red; margin-top: 0;">{samp_a_team}</h1>', 
+    f'<h1 style="text-align: center; color: red; line-height: 0.8;">{samp_a_team}</h1>', 
     unsafe_allow_html=True
 )
 
