@@ -8,7 +8,7 @@ import numpy as np
 
 st.set_page_config(page_title="Betting", page_icon="📈")
 
-st.title("Applying Machine Learning for Soccer Betting Success")
+# st.title("Applying Machine Learning for Soccer Betting Success")
 
 # Read in data from the Google Sheet.
 # Uses st.cache_data to only rerun when the query changes or after 10 min.
@@ -39,7 +39,7 @@ flag_url = Country_league_flag[Country_league_flag['League'] == (samp_league)]['
 
 st.markdown(
     f'<div style="display: flex; justify-content: center;">'
-    f'<img src="{flag_url}" width="200" />'
+    f'<img src="{flag_url}" width="125" />'
     f'</div>',
     unsafe_allow_html=True
 )
@@ -50,9 +50,17 @@ st.markdown(f'<h1 style="text-align: center; color: white;">vs</h1>', unsafe_all
 st.markdown(f'<h1 style="text-align: center; color: red;">{samp_a_team}</h1>', unsafe_allow_html=True)
 
 
-st.write(f"League: {samp_league}")
-st.write(f"Season: {samp_season}")
-st.write(f"Match Day #{samp_stage}")
+# st.write(f"League: {samp_league}")
+# st.write(f"Season: {samp_season}")
+# st.write(f"Match Day #{samp_stage}")
+
+sample_match_data = [
+    {"Column": "League", "Value": samp_league},
+    {"Column": "Season", "Value": samp_season},
+    {"Column": "Match Day", "Value": samp_stage}
+]
+
+st.table(sample_match_data)
 
 
 season_list = ['ALL',
