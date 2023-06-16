@@ -44,11 +44,18 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# st.markdown(f'<h1 style="text-align: center; color: #2C74D3;">{samp_h_team}  vs  {samp_a_team}</h1>', unsafe_allow_html=True)
-st.markdown(f'<h1 style="text-align: center; color: #2C74D3;">{samp_h_team}</h1>', unsafe_allow_html=True)
-st.markdown(f'<h1 style="text-align: center; color: white;">vs</h1>', unsafe_allow_html=True)
-st.markdown(f'<h1 style="text-align: center; color: red;">{samp_a_team}</h1>', unsafe_allow_html=True)
-
+st.markdown(
+    f'<h1 style="text-align: center; color: #2C74D3; margin-bottom: 0;">{samp_h_team}</h1>', 
+    unsafe_allow_html=True
+)
+st.markdown(
+    f'<h1 style="text-align: center; color: white; margin: 0;">vs</h1>', 
+    unsafe_allow_html=True
+)
+st.markdown(
+    f'<h1 style="text-align: center; color: red; margin-top: 0;">{samp_a_team}</h1>', 
+    unsafe_allow_html=True
+)
 
 sample_match_data = {
     "League": [samp_league],
