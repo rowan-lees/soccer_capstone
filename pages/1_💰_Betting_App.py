@@ -224,9 +224,9 @@ if wager_str:
 
             if winnings != 0:
                 if winnings > 0:
-                    st.write(f"Winnings: $<span style='color:green'>{winnings}</span>", unsafe_allow_html=True)
+                    st.write(f"Winnings: <span style='color:green'>${winnings}</span>", unsafe_allow_html=True)
                 else:
-                    st.write(f"Winnings: $<span style='color:red'>{winnings}</span>", unsafe_allow_html=True)
+                    st.write(f"Winnings: <span style='color:red'>${winnings}</span>", unsafe_allow_html=True)
 
 
                 # Update the running total in session_state
@@ -234,7 +234,10 @@ if wager_str:
                     st.session_state.running_total = 0
 
                 st.session_state.running_total += winnings
-                st.write(f"Running Total: ${st.session_state.running_total}")
+                if st.session_state.running_total > 0:
+                    st.write(f"Running Total: <span style='color:green'>${st.session_state.running_total}</span>", unsafe_allow_html=True)
+                else:
+                    st.write(f"Running Total: <span style='color:red'>${st.session_state.running_total}</span>", unsafe_allow_html=True)
 
     except ValueError:
         st.warning("Please enter a valid wager (e.g. 100 or 55.55), excluding the dollar sign.")
