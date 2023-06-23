@@ -214,13 +214,8 @@ def EV(prob, odds):
     return ev
 
 
-# match_id = 1216871   
-
-# example_x = X_test_PCA[example_idx]
-# example_y = y_test.iloc[example_idx]
-
-
 example_idx = y_test.index.get_loc(match_api_id)
+match_api_id = 1216871   
 example_x = X_test_PCA[example_idx]
 
 prediction = XGBOOST_grid_s.predict([example_x])
