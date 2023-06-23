@@ -233,7 +233,7 @@ if wager_str:
 
 # Display the "Next Match" button if a wager has been made
 if 'wager' in st.session_state:
-    st.button("Next Match")
+    st.button("Next Match", key="next_match_button")
 
 # # Display the "Next Match" button
 # if st.button("Next Match", key="next_match_button"):
