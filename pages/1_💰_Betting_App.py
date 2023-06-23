@@ -41,7 +41,7 @@ def generate_sample_match(test_matches, Country_league_flag):
 
 
 # Check if the match data is already stored in session state
-if 'match_data' not in st.session_state:
+if 'match_data' not in st.session_state or st.button("Next Match"):
     # Generate the sample match data and store it in session state
     (samp_season, samp_league, samp_country, samp_stage, samp_h_team, samp_a_team, flag_url, samp_match_home_res, samp_h_bet_odds, samp_a_bet_odds, samp_d_bet_odds) = generate_sample_match(test_matches, Country_league_flag)
     st.session_state.match_data = {
@@ -231,23 +231,6 @@ if wager_str:
     except ValueError:
         st.warning("Please enter a valid wager (e.g. 100 or 55.55), excluding the dollar sign.")
 
-# Check if the match data is already stored in session state
-if 'match_data' not in st.session_state or st.button("Next Match", key="next_match_button"):
-    # Generate the sample match data and store it in session state
-    (samp_season, samp_league, samp_country, samp_stage, samp_h_team, samp_a_team, flag_url, samp_match_home_res, samp_h_bet_odds, samp_a_bet_odds, samp_d_bet_odds) = generate_sample_match(test_matches, Country_league_flag)
-    st.session_state.match_data = {
-                'season': samp_season,
-                'league': samp_league,
-                'country': samp_country,
-                'stage': samp_stage,
-                'home_team': samp_h_team,
-                'away_team': samp_a_team,
-                'flag_url': flag_url,
-                'samp_match_home_res': samp_match_home_res,
-                'samp_h_bet_odds': samp_h_bet_odds,
-                "samp_a_bet_odds": samp_a_bet_odds,
-                'samp_d_bet_odds':samp_d_bet_odds
-    }
 
 # # Display the "Next Match" button
 # if st.button("Next Match", key="next_match_button"):
