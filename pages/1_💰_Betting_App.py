@@ -180,7 +180,7 @@ st.markdown(
 )
 
 
-st.markdown(f'<h1 style="text-align: center; color: white; line-height: 1.5;"><u>ML Model Prediction Odds</u></h1>', unsafe_allow_html=True)
+st.markdown(f'<h1 style="text-align: center; color: white; line-height: 1.5;"><u>ML Model Prediction</u></h1>', unsafe_allow_html=True)
 
 
 #betting functionality
@@ -220,7 +220,7 @@ if wager_str:
 
             if result == "home_win":
                 if match_result == "Win":
-                    winnings = samp_h_bet_odds * wager
+                    winnings = (samp_h_bet_odds * wager) - wager
                     st.write(f"Match Result:&nbsp; Home Win &nbsp;&nbsp;{home_team_short_name} {home_team_goal}:{away_team_goal} {away_team_short_name}")
                 elif match_result == "Draw":
                     winnings = -wager
@@ -230,7 +230,7 @@ if wager_str:
                     st.write(f"Match Result:&nbsp; Away Win &nbsp;&nbsp;{home_team_short_name} {home_team_goal}:{away_team_goal} {away_team_short_name}")
             elif result == "draw":
                 if match_result == "Draw":
-                    winnings = samp_d_bet_odds * wager
+                    winnings = (samp_d_bet_odds * wager) - wager
                     st.write(f"Match Result:&nbsp; Draw &nbsp;&nbsp;{home_team_short_name} {home_team_goal}:{away_team_goal} {away_team_short_name}")
                 elif match_result == "Win":
                     winnings = -wager
@@ -240,7 +240,7 @@ if wager_str:
                     st.write(f"Match Result:&nbsp; Away Win &nbsp;&nbsp;{home_team_short_name} {home_team_goal}:{away_team_goal} {away_team_short_name}")
             elif result == "away_win":
                 if match_result == "Loss":
-                    winnings = samp_a_bet_odds * wager
+                    winnings = (samp_a_bet_odds * wager) - wager
                     st.write(f"Match Result:&nbsp; Away Win &nbsp;&nbsp;{home_team_short_name} {home_team_goal}:{away_team_goal} {away_team_short_name}")
                 elif match_result == "Win":
                     winnings = -wager
