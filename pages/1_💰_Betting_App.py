@@ -5,6 +5,7 @@ import random
 from func_filt_league import filtered_table
 import graph_funcs as gf
 import numpy as np
+from streamlit import SessionState
 
 st.set_page_config(page_title="Betting", page_icon="📈")
 
@@ -41,7 +42,7 @@ def generate_sample_match(test_matches, Country_league_flag):
 
 
 # Check if the match data is already stored in session state
-if 'match_data' not in st.session_state:
+if 'match_data' not in st.session_state or st.button("Next Match"):
     # Generate the sample match data and store it in session state
     (samp_season, samp_league, samp_country, samp_stage, samp_h_team, samp_a_team, flag_url, samp_match_home_res, samp_h_bet_odds, samp_a_bet_odds, samp_d_bet_odds) = generate_sample_match(test_matches, Country_league_flag)
     st.session_state.match_data = {
