@@ -189,11 +189,11 @@ if wager_str:
 
         # Create buttons for the betting options
         result = None
-        if st.button(f"Home Win (Odds: {samp_h_bet_odds}:1)"):
+        if st.button(f"Home Win (Odds: {round(samp_h_bet_odds,1)}:1)"):
             result = "home_win"
-        if st.button(f"Draw (Odds: {samp_d_bet_odds}:1)"):
+        if st.button(f"Draw (Odds: {round(samp_d_bet_odds,1)}:1)"):
             result = "draw"
-        if st.button(f"Away Win (Odds: {samp_a_bet_odds}:1)"):
+        if st.button(f"Away Win (Odds: {round(samp_a_bet_odds,1)}:1)"):
             result = "away_win"
 
         if result:
@@ -233,9 +233,9 @@ if wager_str:
 
             if winnings != 0:
                 if winnings > 0:
-                    st.write(f"Winnings: <span style='color:green'>${winnings}</span>", unsafe_allow_html=True)
+                    st.write(f"Winnings: <span style='color:green'>${round(winnings,2)}</span>", unsafe_allow_html=True)
                 else:
-                    st.write(f"Winnings: <span style='color:red'>${winnings}</span>", unsafe_allow_html=True)
+                    st.write(f"Winnings: <span style='color:red'>${round(winnings,2)}</span>", unsafe_allow_html=True)
 
 
                 # Update the running total in session_state
@@ -244,9 +244,9 @@ if wager_str:
 
                 st.session_state.running_total += winnings
                 if st.session_state.running_total > 0:
-                    st.write(f"Running Total: <span style='color:green'>${st.session_state.running_total}</span>", unsafe_allow_html=True)
+                    st.write(f"Running Total: <span style='color:green'>${round(st.session_state.running_total,2)}</span>", unsafe_allow_html=True)
                 else:
-                    st.write(f"Running Total: <span style='color:red'>${st.session_state.running_total}</span>", unsafe_allow_html=True)
+                    st.write(f"Running Total: <span style='color:red'>${round(st.session_state.running_total,2)}</span>", unsafe_allow_html=True)
 
     except ValueError:
         st.warning("Please enter a valid wager (e.g. 100 or 55.55), excluding the dollar sign.")
