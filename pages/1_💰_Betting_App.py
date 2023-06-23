@@ -166,7 +166,7 @@ st.markdown(
 #betting functionality
 
 #markdown
-st.markdown(f'<h1 style="text-align: center; color: white; line-height: 0.8;"><u>Betting</u></h1>', unsafe_allow_html=True)
+st.markdown(f'<br><h1 style="text-align: center; color: white; line-height: 0.8;"><u>Betting</u></h1>', unsafe_allow_html=True)
 
 # Get the user's wager input
 wager_str = st.text_input("Enter your wager:")
@@ -248,7 +248,7 @@ if wager_str:
 
 
 #markdown for league table
-st.markdown(f'<h1 style="text-align: center; color: white; line-height: 0.8;"><u>Pre-Match Statistics</u></h1>', unsafe_allow_html=True)
+st.markdown(f'<br><h1 style="text-align: center; color: white; line-height: 0.8;"><u>Pre-Match Statistics</u></h1>', unsafe_allow_html=True)
 
 #Statistical Plots
 st.write(f"Current League Table")
