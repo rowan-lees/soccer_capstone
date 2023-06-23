@@ -180,9 +180,11 @@ st.markdown(
 )
 
 
+st.markdown(f'<h1 style="text-align: center; color: white; line-height: 1.5;"><u>ML Model Prediction Odds</u></h1>', unsafe_allow_html=True)
+
+
 #betting functionality
 
-#markdown
 st.markdown(f'<br><h1 style="text-align: center; color: white; line-height: 0.8;"><u>Betting</u></h1>', unsafe_allow_html=True)
 
 # Get the user's wager input
@@ -197,6 +199,7 @@ if wager_str:
 
         # Perform the calculation on the betting outcome using the stored match data and the wager
         # Display the result to the user
+        st.markdown("<br>", unsafe_allow_html=True)
         st.write("Choose Match Outcome:")
         # Code for calculating the betting outcome
 
