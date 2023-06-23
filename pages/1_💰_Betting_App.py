@@ -31,6 +31,7 @@ match_data = load_data(st.secrets["match_data_url"])
 # joblib_file_xgb = BytesIO(response_xgb.content)
 X_test_PCA = load("Models/X_test_PCA.joblib")
 XGBOOST_grid_s = load("Models/XGBOOST_grid_s.joblib")
+y_test  = load("Models/y_test.joblib") 
 
 # Define the match data generation function
 def generate_sample_match(test_matches, Country_league_flag):
@@ -213,9 +214,14 @@ def EV(prob, odds):
     return ev
 
 
-example_idx = match_api_id
-example_x = X_test_PCA[example_idx]
+# match_id = 1216871   
+
+# example_x = X_test_PCA[example_idx]
 # example_y = y_test.iloc[example_idx]
+
+
+example_idx = y_test.index.get_loc(match_api_id)
+example_x = X_test_PCA[example_idx]
 
 prediction = XGBOOST_grid_s.predict([example_x])
 prediction_prob = XGBOOST_grid_s.predict_proba([example_x])
