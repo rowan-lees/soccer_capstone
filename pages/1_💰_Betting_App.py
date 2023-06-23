@@ -33,14 +33,17 @@ def generate_sample_match(test_matches, Country_league_flag):
     samp_a_team = sample["away_team_name"].values[0]
     flag_url = Country_league_flag[Country_league_flag['League'] == (samp_league)]['URL'].values[0]
     samp_match_home_res = sample['home_result'].values[0]
+    samp_h_bet_odds = sample['h_avg_odds'].values[0]
+    samp_a_bet_odds = sample['a_avg_odds'].values[0]
+    samp_d_bet_odds = sample['d_avg_odds'].values[0]
     
-    return samp_season, samp_league, samp_country, samp_stage, samp_h_team, samp_a_team, flag_url, samp_match_home_res
+    return samp_season, samp_league, samp_country, samp_stage, samp_h_team, samp_a_team, flag_url, samp_match_home_res, samp_h_bet_odds, samp_a_bet_odds, samp_d_bet_odds
 
 
 # Check if the match data is already stored in session state
 if 'match_data' not in st.session_state:
     # Generate the sample match data and store it in session state
-    (samp_season, samp_league, samp_country, samp_stage, samp_h_team, samp_a_team, flag_url, samp_match_home_res) = generate_sample_match(test_matches, Country_league_flag)
+    (samp_season, samp_league, samp_country, samp_stage, samp_h_team, samp_a_team, flag_url, samp_match_home_res, samp_h_bet_odds, samp_a_bet_odds, samp_d_bet_odds) = generate_sample_match(test_matches, Country_league_flag)
     st.session_state.match_data = {
                 'season': samp_season,
                 'league': samp_league,
@@ -49,7 +52,10 @@ if 'match_data' not in st.session_state:
                 'home_team': samp_h_team,
                 'away_team': samp_a_team,
                 'flag_url': flag_url,
-                'samp_match_home_res': samp_match_home_res
+                'samp_match_home_res': samp_match_home_res,
+                'samp_h_bet_odds': samp_h_bet_odds,
+                "samp_a_bet_odds": samp_a_bet_odds,
+                'samp_d_bet_odds':samp_d_bet_odds
     }
 
 # Retrieve the match data from session state
