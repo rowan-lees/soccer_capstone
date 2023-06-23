@@ -210,7 +210,13 @@ def EV(prob, odds):
     Function that calculates the expected value of a bet, based on the outcome probability and the bookmaker odds for being correct
     probability should be a fraction
     '''
-    ev = (float(prob) * (float(odds) - 1)) - (1 - float(prob))
+    if isinstance(odds, set):
+        odds = list(odds)[0]
+
+    if isinstance(prob, set):
+    prob = list(prob)[0]
+
+    ev = (prob * (odds - 1)) - (1 - prob)
     return ev
 
 
