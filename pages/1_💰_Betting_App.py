@@ -188,12 +188,20 @@ if wager_str:
         # Code for calculating the betting outcome
 
         # Create buttons for the betting options
+        # result = None
+        # if st.button(f"Home Win (Odds: {samp_h_bet_odds}:1)"):
+        #     result = "home_win"
+        # if st.button(f"Draw (Odds: {samp_d_bet_odds}:1)"):
+        #     result = "draw"
+        # if st.button(f"Away Win (Odds: {samp_a_bet_odds}:1)"):
+        #     result = "away_win"
+
         result = None
-        if st.button(f"Home Win (Odds: {samp_h_bet_odds}:1)", help="#2C74D3"):
+        if st.button(f'<span style="color:#2C74D3;">Home Win</span> (Odds: {samp_h_bet_odds}:1)', unsafe_allow_html=True):
             result = "home_win"
-        if st.button(f"Draw (Odds: {samp_d_bet_odds}:1)", help="yellow"):
+        if st.button(f'<span style="color:yellow;">Draw</span> (Odds: {samp_d_bet_odds}:1)', unsafe_allow_html=True):
             result = "draw"
-        if st.button(f"Away Win (Odds: {samp_a_bet_odds}:1)", help="red"):
+        if st.button(f'<span style="color:red;">Away Win</span> (Odds: {samp_a_bet_odds}:1)', unsafe_allow_html=True):
             result = "away_win"
 
         if result:
