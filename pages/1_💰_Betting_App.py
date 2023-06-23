@@ -154,15 +154,15 @@ away_t = match_data[
 st.markdown(f'<h1 style="text-align: center; color: white; line-height: 1.5;"><u>Pre-Match Betting Odds</u></h1>', unsafe_allow_html=True)
 
 st.markdown(
-    f'<h3 style="text-align: center; color: #2C74D3; line-height: 0.8;">{samp_h_team} WIN   <u>{round(samp_h_bet_odds,1)} : 1</u></h3>', 
+    f'<h3 style="text-align: center; color: #2C74D3; line-height: 0.8;">{samp_h_team} WIN... <u>{round(samp_h_bet_odds,1)} : 1</u></h3>', 
     unsafe_allow_html=True
 )
 st.markdown(
-    f'<h3 style="text-align: center; color: yellow; line-height: 0.8;">DRAW    <u>{round(samp_d_bet_odds,1)} : 1</u></h3>', 
+    f'<h3 style="text-align: center; color: yellow; line-height: 0.8;">DRAW... <u>{round(samp_d_bet_odds,1)} : 1</u></h3>', 
     unsafe_allow_html=True
 )
 st.markdown(
-    f'<h3 style="text-align: center; color: red; line-height: 0.8;">{samp_a_team} WIN   <u>{round(samp_a_bet_odds,1)} : 1</u></h3>', 
+    f'<h3 style="text-align: center; color: red; line-height: 0.8;">{samp_a_team} WIN... <u>{round(samp_a_bet_odds,1)} : 1</u></h3>', 
     unsafe_allow_html=True
 )
 
@@ -188,20 +188,12 @@ if wager_str:
         # Code for calculating the betting outcome
 
         # Create buttons for the betting options
-        # result = None
-        # if st.button(f"Home Win (Odds: {samp_h_bet_odds}:1)"):
-        #     result = "home_win"
-        # if st.button(f"Draw (Odds: {samp_d_bet_odds}:1)"):
-        #     result = "draw"
-        # if st.button(f"Away Win (Odds: {samp_a_bet_odds}:1)"):
-        #     result = "away_win"
-
         result = None
-        if st.button(f'<span style="color:#2C74D3;">Home Win</span> (Odds: {samp_h_bet_odds}:1)', unsafe_allow_html=True):
+        if st.button(f"Home Win (Odds: {samp_h_bet_odds}:1)"):
             result = "home_win"
-        if st.button(f'<span style="color:yellow;">Draw</span> (Odds: {samp_d_bet_odds}:1)', unsafe_allow_html=True):
+        if st.button(f"Draw (Odds: {samp_d_bet_odds}:1)"):
             result = "draw"
-        if st.button(f'<span style="color:red;">Away Win</span> (Odds: {samp_a_bet_odds}:1)', unsafe_allow_html=True):
+        if st.button(f"Away Win (Odds: {samp_a_bet_odds}:1)"):
             result = "away_win"
 
         if result:
