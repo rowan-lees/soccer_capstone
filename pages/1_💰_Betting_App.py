@@ -22,8 +22,8 @@ Country_league_flag = load_data(st.secrets["Country_league_flag_url"])
 league_table = load_data(st.secrets["league_table_url"])
 test_matches = load_data(st.secrets["Test_matches_url"])
 match_data = load_data(st.secrets["match_data_url"])
-X_test_PCA =load(load_data(st.secrets["X_test_PCA_url"]))
-XGBOOST_grid_s =load(load_data(st.secrets['XGBOOST_grid_s_url']))
+X_test_PCA =load(st.secrets["X_test_PCA_url"])
+XGBOOST_grid_s =load(st.secrets['XGBOOST_grid_s_url'])
 
 # Define the match data generation function
 def generate_sample_match(test_matches, Country_league_flag):
