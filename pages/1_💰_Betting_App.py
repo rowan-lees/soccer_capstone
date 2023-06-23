@@ -8,6 +8,7 @@ import numpy as np
 from joblib import load
 import requests
 from io import BytesIO
+from xgboost import XGBClassifier
 
 st.set_page_config(page_title="Betting", page_icon="📈")
 
