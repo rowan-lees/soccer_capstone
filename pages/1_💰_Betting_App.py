@@ -172,6 +172,7 @@ st.markdown(f'<br><h1 style="text-align: center; color: white; line-height: 0.8;
 wager_str = st.text_input("Enter your wager:")
 
 
+
 if wager_str:
     try:
         wager = float(wager_str)
@@ -227,23 +228,32 @@ if wager_str:
                 st.session_state.running_total += winnings - wager
                 st.write(f"Running Total: ${st.session_state.running_total}")
 
-                # Show the "Submit" and "Next Match" buttons
-                if st.button("Submit"):
-                    st.write("Bet submitted.")
-                    if st.button("Next Match"):
-
-                        # Clear the session_state
-                        if 'running_total' in st.session_state:
-                            del st.session_state['running_total']
-                        if 'wager' in st.session_state:
-                            del st.session_state['wager']
-                        if 'match_data' in st.session_state:
-                            del st.session_state['match_data']
-        else:
-            st.warning("Please select a betting option.")
+            # Display the "Next Match" button
+            if st.button("Next Match"):
+                # Clear the session_state
+                if 'running_total' in st.session_state:
+                    del st.session_state['running_total']
+                if 'wager' in st.session_state:
+                    del st.session_state['wager']
+                if 'match_data' in st.session_state:
+                    del st.session_state['match_data']
+                # Generate the next sample match data and store it in session state
+                (samp_season, samp_league, samp_country, samp_stage, samp_h_team, samp_a_team, flag_url, samp_match_home_res, samp_h_bet_odds, samp_a_bet_odds, samp_d_bet_odds) = generate_sample_match(test_matches, Country_league_flag)
+                st.session_state.match_data = {
+                    'season': samp_season,
+                    'league': samp_league,
+                    'country': samp_country,
+                    'stage': samp_stage,
+                    'home_team': samp_h_team,
+                    'away_team': samp_a_team,
+                    'flag_url': flag_url,
+                    'samp_match_home_res': samp_match_home_res,
+                    'samp_h_bet_odds': samp_h_bet_odds,
+                    'samp_a_bet_odds': samp_a_bet_odds,
+                    'samp_d_bet_odds': samp_d_bet_odds
+                }
     except ValueError:
         st.warning("Please enter a valid wager (e.g. 100 or 55.55), excluding the dollar sign.")
-
 
 # if wager_str:
 #     try:
