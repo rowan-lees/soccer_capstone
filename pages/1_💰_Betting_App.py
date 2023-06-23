@@ -214,7 +214,7 @@ def EV(prob, odds):
         odds = list(odds)[0]
 
     if isinstance(prob, set):
-    prob = list(prob)[0]
+        prob = list(prob)[0]
 
     ev = (prob * (odds - 1)) - (1 - prob)
     return ev
