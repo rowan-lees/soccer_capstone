@@ -5,6 +5,7 @@ import random
 from func_filt_league import filtered_table
 import graph_funcs as gf
 import numpy as np
+from joblib import load
 
 st.set_page_config(page_title="Betting", page_icon="📈")
 
@@ -21,6 +22,8 @@ Country_league_flag = load_data(st.secrets["Country_league_flag_url"])
 league_table = load_data(st.secrets["league_table_url"])
 test_matches = load_data(st.secrets["Test_matches_url"])
 match_data = load_data(st.secrets["match_data_url"])
+X_test_PCA =load(load_data(st.secrets["X_test_PCA_url"]))
+XGBOOST_grid_s =load(load_data(st.secrets['XGBOOST_grid_s_url']))
 
 # Define the match data generation function
 def generate_sample_match(test_matches, Country_league_flag):
@@ -40,19 +43,21 @@ def generate_sample_match(test_matches, Country_league_flag):
     away_team_short_name = sample['away_team_short_name'].values[0]
     home_team_goal = sample['home_team_goal'].values[0]
     away_team_goal = sample['away_team_goal'].values[0]
+    match_api_id = sample['match_api_id'].values[0]
 
     # Check if any of the odds values are NaN, and if so, regenerate the sample match
     if pd.isna(samp_h_bet_odds) or pd.isna(samp_a_bet_odds) or pd.isna(samp_d_bet_odds):
         return generate_sample_match(test_matches, Country_league_flag)
     
-    return samp_season, samp_league, samp_country, samp_stage, samp_h_team, samp_a_team, flag_url, samp_match_home_res, samp_h_bet_odds, samp_a_bet_odds, samp_d_bet_odds, home_team_short_name, away_team_short_name, home_team_goal, away_team_goal
+    return samp_season, samp_league, samp_country, samp_stage, samp_h_team, samp_a_team, flag_url, samp_match_home_res, samp_h_bet_odds, samp_a_bet_odds, samp_d_bet_odds, \
+        home_team_short_name, away_team_short_name, home_team_goal, away_team_goal, match_api_id
 
 
 # Check if the match data is already stored in session state
 if 'match_data' not in st.session_state or st.button("Next Match", key="next_match_button"):
     # Generate the sample match data and store it in session state
     (samp_season, samp_league, samp_country, samp_stage, samp_h_team, samp_a_team, flag_url, samp_match_home_res, samp_h_bet_odds, samp_a_bet_odds, \
-     samp_d_bet_odds, home_team_short_name, away_team_short_name, home_team_goal, away_team_goal) = generate_sample_match(test_matches, Country_league_flag)
+     samp_d_bet_odds, home_team_short_name, away_team_short_name, home_team_goal, away_team_goal, match_api_id) = generate_sample_match(test_matches, Country_league_flag)
     st.session_state.match_data = {
                 'season': samp_season,
                 'league': samp_league,
@@ -68,7 +73,8 @@ if 'match_data' not in st.session_state or st.button("Next Match", key="next_mat
                 'home_team_short_name':home_team_short_name,
                 'away_team_short_name':away_team_short_name,
                 'home_team_goal':home_team_goal,
-                'away_team_goal':away_team_goal
+                'away_team_goal':away_team_goal,
+                'match_api_id': match_api_id
     }
 
 # Retrieve the match data from session state
@@ -87,6 +93,7 @@ home_team_short_name = st.session_state.match_data['home_team_short_name']
 away_team_short_name = st.session_state.match_data['away_team_short_name']
 home_team_goal = st.session_state.match_data['home_team_goal']
 away_team_goal = st.session_state.match_data['away_team_goal']
+match_api_id = st.session_state.match_data['match_api_id']
 
 st.markdown(
     f'<div style="display: flex; justify-content: center;">'
@@ -180,7 +187,53 @@ st.markdown(
 )
 
 
+
+
+
+
+
+
+
+
 st.markdown(f'<h1 style="text-align: center; color: white; line-height: 1.5;"><u>ML Model Prediction</u></h1>', unsafe_allow_html=True)
+
+def EV(prob, odds):
+    '''
+    Function that calculates the expected value of a bet, based on the outcome probability and the bookmaker odds for being correct
+    probability should be a fraction
+    '''
+    ev = (prob * (odds - 1)) - (1 - prob)
+    return ev
+
+
+example_idx = match_api_id
+example_x = X_test_PCA[example_idx]
+# example_y = y_test.iloc[example_idx]
+
+prediction = XGBOOST_grid_s.predict([example_x])
+prediction_prob = XGBOOST_grid_s.predict_proba([example_x])
+
+print("Probabilities:", prediction_prob)
+# print("True label:", example_y)
+print("Model prediction:", prediction)
+
+
+
+st.markdown(f'Expected Value of Home Loss {round(EV(0.29845473, {samp_a_bet_odds}),3)}')
+st.markdown(f'Expected Value of Draw {round(EV(0.29672, {samp_d_bet_odds}),3)}')
+st.markdown(f'Expected Value of Home Win {round(EV(0.40482527, {samp_h_bet_odds}),3)}')
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 #betting functionality
