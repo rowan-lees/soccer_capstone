@@ -231,9 +231,8 @@ if wager_str:
     except ValueError:
         st.warning("Please enter a valid wager (e.g. 100 or 55.55), excluding the dollar sign.")
 
-# Display the "Next Match" button if a wager has been made
-if 'wager' in st.session_state:
-    st.button("Next Match", key="next_match_button")
+# Display the "Next Match" button after the betting section
+st.button("Next Match", key="next_match_button")
 
 # # Display the "Next Match" button
 # if st.button("Next Match", key="next_match_button"):
