@@ -154,15 +154,15 @@ away_t = match_data[
 st.markdown(f'<h1 style="text-align: center; color: white; line-height: 1.5;"><u>Pre-Match Betting Odds</u></h1>', unsafe_allow_html=True)
 
 st.markdown(
-    f'<h3 style="text-align: center; color: #2C74D3; line-height: 0.8;">{samp_h_team} WIN... <u>{round(samp_h_bet_odds,1)} : 1</u></h3>', 
+    f'<h3 style="text-align: center; color: #2C74D3; line-height: 0.8;">{samp_h_team} WIN&nbsp;&nbsp;&nbsp; <u>{round(samp_h_bet_odds,1)} : 1</u></h3>', 
     unsafe_allow_html=True
 )
 st.markdown(
-    f'<h3 style="text-align: center; color: yellow; line-height: 0.8;">DRAW... <u>{round(samp_d_bet_odds,1)} : 1</u></h3>', 
+    f'<h3 style="text-align: center; color: yellow; line-height: 0.8;">DRAW&nbsp;&nbsp;&nbsp; <u>{round(samp_d_bet_odds,1)} : 1</u></h3>', 
     unsafe_allow_html=True
 )
 st.markdown(
-    f'<h3 style="text-align: center; color: red; line-height: 0.8;">{samp_a_team} WIN... <u>{round(samp_a_bet_odds,1)} : 1</u></h3>', 
+    f'<h3 style="text-align: center; color: red; line-height: 0.8;">{samp_a_team} WIN&nbsp;&nbsp;&nbsp; <u>{round(samp_a_bet_odds,1)} : 1</u></h3>', 
     unsafe_allow_html=True
 )
 
