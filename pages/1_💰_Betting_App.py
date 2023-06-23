@@ -5,7 +5,6 @@ import random
 from func_filt_league import filtered_table
 import graph_funcs as gf
 import numpy as np
-from streamlit import SessionState
 
 st.set_page_config(page_title="Betting", page_icon="📈")
 
