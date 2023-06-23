@@ -189,11 +189,11 @@ if wager_str:
 
         # Create buttons for the betting options
         result = None
-        if st.button(f"Home Win (Odds: {samp_h_bet_odds}:1)"):
+        if st.button(f"Home Win (Odds: {samp_h_bet_odds}:1)", help="#2C74D3"):
             result = "home_win"
-        if st.button(f"Draw (Odds: {samp_d_bet_odds}:1)"):
+        if st.button(f"Draw (Odds: {samp_d_bet_odds}:1)", help="yellow"):
             result = "draw"
-        if st.button(f"Away Win (Odds: {samp_a_bet_odds}:1)"):
+        if st.button(f"Away Win (Odds: {samp_a_bet_odds}:1)", help="red"):
             result = "away_win"
 
         if result:
@@ -204,23 +204,32 @@ if wager_str:
                 if match_result == "Win":
                     winnings = samp_h_bet_odds * wager
                     st.write(f"Match Result: Home Win")
-                else:
+                elif match_result == "Draw":
                     winnings = -wager
-                    st.write(f"Match Result: {match_result}")
+                    st.write("Match Result: Draw")
+                elif match_result == "Loss":
+                    winnings = -wager
+                    st.write("Match Result: Away Win")
             elif result == "draw":
                 if match_result == "Draw":
                     winnings = samp_d_bet_odds * wager
                     st.write(f"Match Result: Draw")
-                else:
+                elif match_result == "Win":
                     winnings = -wager
-                    st.write(f"Match Result: {match_result}")
+                    st.write("Match Result: Home Win")
+                elif match_result == "Loss":
+                    winnings = -wager
+                    st.write("Match Result: Away Win")
             elif result == "away_win":
                 if match_result == "Loss":
                     winnings = samp_a_bet_odds * wager
-                    st.write(f"Match Result: Home Loss")
-                else:
+                    st.write(f"Match Result: Away Win")
+                elif match_result == "Win":
                     winnings = -wager
-                    st.write(f"Match Result: {match_result}")
+                    st.write("Match Result: Home Win")
+                elif match_result == "Draw":
+                    winnings = -wager
+                    st.write("Match Result: Draw")
 
             if winnings != 0:
                 if winnings > 0:
