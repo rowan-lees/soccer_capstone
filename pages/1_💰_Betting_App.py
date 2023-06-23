@@ -230,15 +230,15 @@ if wager_str:
                 # Show the "Submit" and "Next Match" buttons
                 if st.button("Submit"):
                     st.write("Bet submitted.")
-                    st.button("Next Match")
+                    if st.button("Next Match"):
 
-                    # Clear the session_state
-                    if 'running_total' in st.session_state:
-                        del st.session_state['running_total']
-                    if 'wager' in st.session_state:
-                        del st.session_state['wager']
-                    if 'match_data' in st.session_state:
-                        del st.session_state['match_data']
+                        # Clear the session_state
+                        if 'running_total' in st.session_state:
+                            del st.session_state['running_total']
+                        if 'wager' in st.session_state:
+                            del st.session_state['wager']
+                        if 'match_data' in st.session_state:
+                            del st.session_state['match_data']
         else:
             st.warning("Please select a betting option.")
     except ValueError:
