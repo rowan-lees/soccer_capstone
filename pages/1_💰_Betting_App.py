@@ -227,12 +227,20 @@ if wager_str:
                 st.session_state.running_total += winnings - wager
                 st.write(f"Running Total: ${st.session_state.running_total}")
 
-            if st.button("Submit"):
-                st.write("Bet submitted.")
-                st.button("Next Match")
-                # Clear the session_state
-                st.session_state = {}
+                # Show the "Submit" and "Next Match" buttons
+                if st.button("Submit"):
+                    st.write("Bet submitted.")
+                    st.button("Next Match")
 
+                    # Clear the session_state
+                    if 'running_total' in st.session_state:
+                        del st.session_state['running_total']
+                    if 'wager' in st.session_state:
+                        del st.session_state['wager']
+                    if 'match_data' in st.session_state:
+                        del st.session_state['match_data']
+        else:
+            st.warning("Please select a betting option.")
     except ValueError:
         st.warning("Please enter a valid wager (e.g. 100 or 55.55), excluding the dollar sign.")
 
@@ -297,6 +305,8 @@ if wager_str:
 
 #     except ValueError:
 #         st.warning("Please enter a valid wager (e.g. 100 or 55.55), excluding the dollar sign.")
+
+
 
 
 # with st.form("wager_form"):
