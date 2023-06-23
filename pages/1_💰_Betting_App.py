@@ -36,6 +36,10 @@ def generate_sample_match(test_matches, Country_league_flag):
     samp_h_bet_odds = sample['h_avg_odds'].values[0]
     samp_a_bet_odds = sample['a_avg_odds'].values[0]
     samp_d_bet_odds = sample['d_avg_odds'].values[0]
+
+    # Check if any of the odds values are NaN, and if so, regenerate the sample match
+    if pd.isna(samp_h_bet_odds) or pd.isna(samp_a_bet_odds) or pd.isna(samp_d_bet_odds):
+        return generate_sample_match(test_matches, Country_league_flag)
     
     return samp_season, samp_league, samp_country, samp_stage, samp_h_team, samp_a_team, flag_url, samp_match_home_res, samp_h_bet_odds, samp_a_bet_odds, samp_d_bet_odds
 
