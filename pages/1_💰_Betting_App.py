@@ -222,11 +222,11 @@ if wager_str:
                     winnings = -wager
                     st.write(f"Match Result: {match_result}")
 
-                if winnings != 0:
-                    if winnings > 0:
-                        st.write(f"Winnings: $<span style='color:green'>{winnings}</span>", unsafe_allow_html=True)
-                    else:
-                        st.write(f"Winnings: $<span style='color:red'>{winnings}</span>", unsafe_allow_html=True)
+            if winnings != 0:
+                if winnings > 0:
+                    st.write(f"Winnings: $<span style='color:green'>{winnings}</span>", unsafe_allow_html=True)
+                else:
+                    st.write(f"Winnings: $<span style='color:red'>{winnings}</span>", unsafe_allow_html=True)
 
 
                 # Update the running total in session_state
