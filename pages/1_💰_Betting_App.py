@@ -193,7 +193,40 @@ if wager_str:
             result = "away_win"
 
         if result:
-            # Betting outcome logic
+            match_result = samp_match_home_res
+            winnings = 0
+
+            if result == "home_win":
+                if match_result == "Win":
+                    winnings = samp_h_bet_odds * wager
+                    st.write(f"Match Result: Home Win")
+                else:
+                    winnings = -wager
+                    st.write(f"Match Result: {match_result}")
+            elif result == "draw":
+                if match_result == "Draw":
+                    winnings = samp_d_bet_odds * wager
+                    st.write(f"Match Result: Draw")
+                else:
+                    winnings = -wager
+                    st.write(f"Match Result: {match_result}")
+            elif result == "away_win":
+                if match_result == "Loss":
+                    winnings = samp_a_bet_odds * wager
+                    st.write(f"Match Result: Home Loss")
+                else:
+                    winnings = -wager
+                    st.write(f"Match Result: {match_result}")
+
+            if winnings != 0:
+                st.write(f"Potential Winnings: ${winnings}")
+
+                # Update the running total in session_state
+                if 'running_total' not in st.session_state:
+                    st.session_state.running_total = 0
+
+                st.session_state.running_total += winnings - wager
+                st.write(f"Running Total: ${st.session_state.running_total}")
 
     except ValueError:
         st.warning("Please enter a valid wager (e.g. 100 or 55.55), excluding the dollar sign.")
