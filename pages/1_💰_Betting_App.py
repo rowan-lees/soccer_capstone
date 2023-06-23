@@ -229,7 +229,7 @@ if wager_str:
                 st.write(f"Running Total: ${st.session_state.running_total}")
 
             # Display the "Next Match" button
-            if st.button("Next Match"):
+            if st.button("Next Match", key="next_match_button"):
                 # Clear the session_state
                 if 'running_total' in st.session_state:
                     del st.session_state['running_total']
