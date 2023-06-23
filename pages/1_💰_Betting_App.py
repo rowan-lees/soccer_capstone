@@ -171,20 +171,16 @@ st.markdown(f'<br><h1 style="text-align: center; color: white; line-height: 0.8;
 # Get the user's wager input
 wager_str = st.text_input("Enter your wager:")
 
+
 if wager_str:
     try:
         wager = float(wager_str)
+        st.session_state.wager = wager
+
         # Perform the calculation on the betting outcome using the stored match data and the wager
         # Display the result to the user
         st.write("Betting Outcome Calculation:")
         # Code for calculating the betting outcome
-        # h_winnings = h_win_odds * wager
-        # d_winnings = draw_odds * wager
-        # a_winnings = h_loss_odds * wager
-
-        # st.write(f"Home Win Winnings: ${h_winnings}")
-        # st.write(f"Draw Winnings: ${d_winnings}")
-        # st.write(f"Away Win Winnings: ${a_winnings}")
 
         # Create buttons for the betting options
         result = None
@@ -197,6 +193,7 @@ if wager_str:
 
         if result:
             match_result = samp_match_home_res
+            winnings = 0
 
             if result == "home_win":
                 if match_result == "Win":
@@ -220,17 +217,86 @@ if wager_str:
                     winnings = -wager
                     st.write(f"Match Result: {match_result}")
 
-            st.write(f"Potential Winnings: ${winnings}")
+            if winnings != 0:
+                st.write(f"Potential Winnings: ${winnings}")
 
-            # Update the running total in session_state
-            if 'running_total' not in st.session_state:
-                st.session_state.running_total = 0
+                # Update the running total in session_state
+                if 'running_total' not in st.session_state:
+                    st.session_state.running_total = 0
 
-            st.session_state.running_total += winnings - wager
-            st.write(f"Running Total: ${st.session_state.running_total}")
+                st.session_state.running_total += winnings - wager
+                st.write(f"Running Total: ${st.session_state.running_total}")
+
+            if st.button("Submit"):
+                st.write("Bet submitted.")
+                st.button("Next Match")
+                # Clear the session_state
+                st.session_state = {}
 
     except ValueError:
         st.warning("Please enter a valid wager (e.g. 100 or 55.55), excluding the dollar sign.")
+
+
+# if wager_str:
+#     try:
+#         wager = float(wager_str)
+#         # Perform the calculation on the betting outcome using the stored match data and the wager
+#         # Display the result to the user
+#         st.write("Betting Outcome Calculation:")
+#         # Code for calculating the betting outcome
+#         # h_winnings = h_win_odds * wager
+#         # d_winnings = draw_odds * wager
+#         # a_winnings = h_loss_odds * wager
+
+#         # st.write(f"Home Win Winnings: ${h_winnings}")
+#         # st.write(f"Draw Winnings: ${d_winnings}")
+#         # st.write(f"Away Win Winnings: ${a_winnings}")
+
+#         # Create buttons for the betting options
+#         result = None
+#         if st.button(f"Home Win (Odds: {samp_h_bet_odds}:1)"):
+#             result = "home_win"
+#         if st.button(f"Draw (Odds: {samp_d_bet_odds}:1)"):
+#             result = "draw"
+#         if st.button(f"Away Win (Odds: {samp_a_bet_odds}:1)"):
+#             result = "away_win"
+
+#         if result:
+#             match_result = samp_match_home_res
+
+#             if result == "home_win":
+#                 if match_result == "Win":
+#                     winnings = samp_h_bet_odds * wager
+#                     st.write(f"Match Result: Home Win")
+#                 else:
+#                     winnings = -wager
+#                     st.write(f"Match Result: {match_result}")
+#             elif result == "draw":
+#                 if match_result == "Draw":
+#                     winnings = samp_d_bet_odds * wager
+#                     st.write(f"Match Result: Draw")
+#                 else:
+#                     winnings = -wager
+#                     st.write(f"Match Result: {match_result}")
+#             elif result == "away_win":
+#                 if match_result == "Loss":
+#                     winnings = samp_a_bet_odds * wager
+#                     st.write(f"Match Result: Home Loss")
+#                 else:
+#                     winnings = -wager
+#                     st.write(f"Match Result: {match_result}")
+
+#             st.write(f"Potential Winnings: ${winnings}")
+
+#             # Update the running total in session_state
+#             if 'running_total' not in st.session_state:
+#                 st.session_state.running_total = 0
+
+#             st.session_state.running_total += winnings - wager
+#             st.write(f"Running Total: ${st.session_state.running_total}")
+
+#     except ValueError:
+#         st.warning("Please enter a valid wager (e.g. 100 or 55.55), excluding the dollar sign.")
 
 
 # with st.form("wager_form"):
