@@ -221,30 +221,30 @@ if wager_str:
                     st.write(f"Match Result:&nbsp; Home Win &nbsp;&nbsp;{home_team_short_name} {home_team_goal}:{away_team_goal} {away_team_short_name}")
                 elif match_result == "Draw":
                     winnings = -wager
-                    st.write(f"Match Result: Draw &nbsp;&nbsp;{home_team_short_name} {home_team_goal}:{away_team_goal} {away_team_short_name}")
+                    st.write(f"Match Result:&nbsp; Draw &nbsp;&nbsp;{home_team_short_name} {home_team_goal}:{away_team_goal} {away_team_short_name}")
                 elif match_result == "Loss":
                     winnings = -wager
-                    st.write(f"Match Result: Away Win &nbsp;&nbsp;{home_team_short_name} {home_team_goal}:{away_team_goal} {away_team_short_name}")
+                    st.write(f"Match Result:&nbsp; Away Win &nbsp;&nbsp;{home_team_short_name} {home_team_goal}:{away_team_goal} {away_team_short_name}")
             elif result == "draw":
                 if match_result == "Draw":
                     winnings = samp_d_bet_odds * wager
-                    st.write(f"Match Result: Draw &nbsp;&nbsp;{home_team_short_name} {home_team_goal}:{away_team_goal} {away_team_short_name}")
+                    st.write(f"Match Result:&nbsp; Draw &nbsp;&nbsp;{home_team_short_name} {home_team_goal}:{away_team_goal} {away_team_short_name}")
                 elif match_result == "Win":
                     winnings = -wager
-                    st.write(f"Match Result: Home Win &nbsp;&nbsp;{home_team_short_name} {home_team_goal}:{away_team_goal} {away_team_short_name}")
+                    st.write(f"Match Result:&nbsp; Home Win &nbsp;&nbsp;{home_team_short_name} {home_team_goal}:{away_team_goal} {away_team_short_name}")
                 elif match_result == "Loss":
                     winnings = -wager
-                    st.write(f"Match Result: Away Win &nbsp;&nbsp;{home_team_short_name} {home_team_goal}:{away_team_goal} {away_team_short_name}")
+                    st.write(f"Match Result:&nbsp; Away Win &nbsp;&nbsp;{home_team_short_name} {home_team_goal}:{away_team_goal} {away_team_short_name}")
             elif result == "away_win":
                 if match_result == "Loss":
                     winnings = samp_a_bet_odds * wager
-                    st.write(f"Match Result: Away Win &nbsp;&nbsp;{home_team_short_name} {home_team_goal}:{away_team_goal} {away_team_short_name}")
+                    st.write(f"Match Result:&nbsp; Away Win &nbsp;&nbsp;{home_team_short_name} {home_team_goal}:{away_team_goal} {away_team_short_name}")
                 elif match_result == "Win":
                     winnings = -wager
-                    st.write(f"Match Result: Home Win &nbsp;&nbsp;{home_team_short_name} {home_team_goal}:{away_team_goal} {away_team_short_name}")
+                    st.write(f"Match Result:&nbsp; Home Win &nbsp;&nbsp;{home_team_short_name} {home_team_goal}:{away_team_goal} {away_team_short_name}")
                 elif match_result == "Draw":
                     winnings = -wager
-                    st.write(f"Match Result: Draw &nbsp;&nbsp;{home_team_short_name} {home_team_goal}:{away_team_goal} {away_team_short_name}")
+                    st.write(f"Match Result:&nbsp; Draw &nbsp;&nbsp;{home_team_short_name} {home_team_goal}:{away_team_goal} {away_team_short_name}")
 
             if winnings != 0:
                 if winnings > 0:
