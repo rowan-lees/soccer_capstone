@@ -67,9 +67,9 @@ samp_h_team = st.session_state.match_data['home_team']
 samp_a_team = st.session_state.match_data['away_team']
 flag_url = st.session_state.match_data['flag_url']
 samp_match_home_res = st.session_state.match_data['samp_match_home_res']
-samp_h_bet_odds = st.session_state.match_data['h_avg_odds']
-samp_a_bet_odds = st.session_state.match_data['a_avg_odds']
-samp_d_bet_odds = st.session_state.match_data['d_avg_odds']
+samp_h_bet_odds = st.session_state.match_data['samp_h_bet_odds']
+samp_a_bet_odds = st.session_state.match_data['samp_a_bet_odds']
+samp_d_bet_odds = st.session_state.match_data['samp_d_bet_odds']
 
 st.markdown(
     f'<div style="display: flex; justify-content: center;">'
