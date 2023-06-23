@@ -6,6 +6,8 @@ from func_filt_league import filtered_table
 import graph_funcs as gf
 import numpy as np
 from joblib import load
+import requests
+from io import BytesIO
 
 st.set_page_config(page_title="Betting", page_icon="📈")
 
@@ -22,8 +24,12 @@ Country_league_flag = load_data(st.secrets["Country_league_flag_url"])
 league_table = load_data(st.secrets["league_table_url"])
 test_matches = load_data(st.secrets["Test_matches_url"])
 match_data = load_data(st.secrets["match_data_url"])
-X_test_PCA =load(st.secrets["X_test_PCA_url"])
-XGBOOST_grid_s =load(st.secrets['XGBOOST_grid_s_url'])
+response_pca =requests.get(st.secrets["X_test_PCA_url"])
+response_xgb =requests.get(st.secrets['XGBOOST_grid_s_url'])
+joblib_file_pca = BytesIO(response_pca.content)
+joblib_file_xgb = BytesIO(response_xgb.content)
+X_test_PCA = load(joblib_file_pca)
+XGBOOST_grid_s = load(joblib_file_xgb)
 
 # Define the match data generation function
 def generate_sample_match(test_matches, Country_league_flag):
