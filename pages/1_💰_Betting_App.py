@@ -147,7 +147,7 @@ away_t = match_data[
 #odds both model and bookie
 
 #markdown
-st.markdown(f'<h3 style="text-align: center; color: white; line-height: 1.5;">Pre-Match Betting Odds</h3>', unsafe_allow_html=True)
+st.markdown(f'<h1 style="text-align: center; color: white; line-height: 1.5;"><u>Pre-Match Betting Odds</u></h1>', unsafe_allow_html=True)
 
 st.markdown(
     f'<h3 style="text-align: center; color: #2C74D3; line-height: 0.8;">{samp_h_team} WIN       {samp_h_bet_odds}:1</h3>', 
@@ -166,7 +166,7 @@ st.markdown(
 #betting functionality
 
 #markdown
-st.markdown(f'<h3 style="text-align: center; color: white; line-height: 0.8;">Betting</h3>', unsafe_allow_html=True)
+st.markdown(f'<h1 style="text-align: center; color: white; line-height: 0.8;"><u>Betting</u></h1>', unsafe_allow_html=True)
 
 # Get the user's wager input
 wager_str = st.text_input("Enter your wager:")
@@ -248,14 +248,14 @@ if wager_str:
 
 
 #markdown for league table
-st.markdown(f'<h3 style="text-align: center; color: white; line-height: 0.8;">Current League Table</h3>', unsafe_allow_html=True)
+st.markdown(f'<h1 style="text-align: center; color: white; line-height: 0.8;"><u>Pre-Match Statistics</u></h1>', unsafe_allow_html=True)
 
 #Statistical Plots
-
+st.write(f"Current League Table")
 st.dataframe(current_table)
-st.write(f"{samp_h_team} Last 5 Matches this season")
+st.write(f"{samp_h_team} Last 5 Matches")
 st.dataframe(home_t.tail(5))
-st.write(f"{samp_a_team} Last 5 Matches this season")
+st.write(f"{samp_a_team} Last 5 Matches")
 st.dataframe(away_t.tail(5))
 st.set_option('deprecation.showPyplotGlobalUse', False)
 fig = gf.five_match_line_plt(match_data,samp_league, samp_season, samp_stage,samp_h_team,samp_a_team)   #match_data, league, season, stage, h_team, a_team
