@@ -151,7 +151,7 @@ away_t = match_data[
 #odds both model and bookie
 
 #markdown
-st.markdown(f'<h1 style="text-align: center; color: white; line-height: 1.5;"><u>Pre-Match Betting Odds</u></h1>', unsafe_allow_html=True)
+st.markdown(f'<h1 style="text-align: center; color: white; line-height: 1.5;"><u>Pre-Match Bookmaker Odds</u></h1>', unsafe_allow_html=True)
 
 st.markdown(
     f'<h3 style="text-align: center; color: #2C74D3; line-height: 0.8;">{samp_h_team} WIN&nbsp;&nbsp;&nbsp; <u>{round(samp_h_bet_odds,1)} : 1</u></h3>', 
@@ -184,17 +184,19 @@ if wager_str:
 
         # Perform the calculation on the betting outcome using the stored match data and the wager
         # Display the result to the user
-        st.write("Betting Outcome Calculation:")
+        st.write("Choose Match Outcome:")
         # Code for calculating the betting outcome
 
         # Create buttons for the betting options
         result = None
-        if st.button(f"Home Win (Odds: {round(samp_h_bet_odds,1)}:1)"):
+        if st.button(f"Home Win (odds: {round(samp_h_bet_odds,1)} : 1)"):
             result = "home_win"
-        if st.button(f"Draw (Odds: {round(samp_d_bet_odds,1)}:1)"):
+        if st.button(f"Draw (odds: {round(samp_d_bet_odds,1)} : 1)"):
             result = "draw"
-        if st.button(f"Away Win (Odds: {round(samp_a_bet_odds,1)}:1)"):
+        if st.button(f"Away Win (odds: {round(samp_a_bet_odds,1)} : 1)"):
             result = "away_win"
+
+        st.markdown("<br>", unsafe_allow_html=True)
 
         if result:
             match_result = samp_match_home_res
@@ -252,22 +254,6 @@ if wager_str:
         st.warning("Please enter a valid wager (e.g. 100 or 55.55), excluding the dollar sign.")
 
 
-
-
-# with st.form("wager_form"):
-#     wager_str = st.text_input("Enter your $$ wager")
-#     wager_submit = st.form_submit_button("Submit")
-
-# if wager_submit:
-#     try:
-#         wager = float(wager_str)
-#         st.write("Wager entered:", wager_str)
-#         # Perform calculations using the wager amount
-#     except ValueError:
-#         st.warning("Please enter a valid wager (e.g. 100 or 55.55), please exclude the dollar sign")
-
-
-
 #markdown for league table
 st.markdown(f'<br><h1 style="text-align: center; color: white; line-height: 0.8;"><u>Pre-Match Statistics</u></h1>', unsafe_allow_html=True)
 
@@ -283,42 +269,4 @@ fig = gf.five_match_line_plt(match_data,samp_league, samp_season, samp_stage,sam
 
 st.pyplot(fig)
 
-# league_selection = st.selectbox("Select League",league_list)
-# season_selection = st.selectbox("Select Season",season_list)
-
-# def generate_random_match():
-#     match_id = random.choice(list(match_dict.keys()))
-#     match_info = match_dict[match_id]
-#     match_df = pd.DataFrame.from_dict({match_id:match_info}, orient='index')
-#     return match_df
-
-# match_generated = False
-# sample_match = None
-
-# # Generate a new match
-# if st.button("Generate New Match"):
-#     sample_match = generate_random_match()
-#     match_generated = True
-
-
-# if match_generated:
-#     # Display the match information
-#     st.write(f"{sample_match['home_team_name'].values[0]} vs. {sample_match['away_team_name'].values[0]}")
-#     st.write(f"Date: {sample_match['date'].dt.strftime('%d-%m-%Y')}")
-
-#     # Get the user's bet
-#     home_w_button = st.button("Home Team Win")
-#     draw_button = st.button("Draw")
-#     away_w_button = st.button("Away Team Win")
-
-#     if home_w_button:
-#         st.write(f"You wagered ${wager} that {sample_match['home_team_name'].values[0]} will Win!")
-#     elif away_w_button:
-#         st.write(f"You wagered ${wager} that {sample_match['away_team_name'].values[0]} will Win!")
-#     elif draw_button:
-#         st.write(f"You wagered ${wager} that the match will end in a Draw!")
-#     else:
-#         st.write("Please make a selection.")
-# else:
-#     st.write("Please generate a match.") 
 
