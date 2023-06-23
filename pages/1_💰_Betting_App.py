@@ -61,6 +61,9 @@ samp_h_team = st.session_state.match_data['home_team']
 samp_a_team = st.session_state.match_data['away_team']
 flag_url = st.session_state.match_data['flag_url']
 samp_match_home_res = st.session_state.match_data['samp_match_home_res']
+samp_h_bet_odds = st.session_state.match_data['h_avg_odds']
+samp_a_bet_odds = st.session_state.match_data['a_avg_odds']
+samp_d_bet_odds = st.session_state.match_data['d_avg_odds']
 
 st.markdown(
     f'<div style="display: flex; justify-content: center;">'
@@ -140,20 +143,16 @@ away_t = match_data[
 #markdown
 st.markdown(f'<h3 style="text-align: center; color: white; line-height: 1.5;">Pre-Match Betting Odds</h3>', unsafe_allow_html=True)
 
-h_win_odds = 2
-h_loss_odds = 1.5
-draw_odds = 4
-
 st.markdown(
-    f'<h3 style="text-align: center; color: #2C74D3; line-height: 0.8;">{samp_h_team} WIN       {h_win_odds}:1</h3>', 
+    f'<h3 style="text-align: center; color: #2C74D3; line-height: 0.8;">{samp_h_team} WIN       {samp_h_bet_odds}:1</h3>', 
     unsafe_allow_html=True
 )
 st.markdown(
-    f'<h3 style="text-align: center; color: yellow; line-height: 0.8;">DRAW         {draw_odds}:1</h3>', 
+    f'<h3 style="text-align: center; color: yellow; line-height: 0.8;">DRAW         {samp_d_bet_odds}:1</h3>', 
     unsafe_allow_html=True
 )
 st.markdown(
-    f'<h3 style="text-align: center; color: red; line-height: 0.8;">{samp_a_team} WIN       {h_loss_odds}:1</h3>', 
+    f'<h3 style="text-align: center; color: red; line-height: 0.8;">{samp_a_team} WIN       {samp_a_bet_odds}:1</h3>', 
     unsafe_allow_html=True
 )
 
@@ -183,11 +182,11 @@ if wager_str:
 
         # Create buttons for the betting options
         result = None
-        if st.button(f"Home Win (Odds: {h_win_odds}:1)"):
+        if st.button(f"Home Win (Odds: {samp_h_bet_odds}:1)"):
             result = "home_win"
-        if st.button(f"Draw (Odds: {draw_odds}:1)"):
+        if st.button(f"Draw (Odds: {samp_d_bet_odds}:1)"):
             result = "draw"
-        if st.button(f"Away Win (Odds: {h_loss_odds}:1)"):
+        if st.button(f"Away Win (Odds: {samp_a_bet_odds}:1)"):
             result = "away_win"
 
         if result:
@@ -195,21 +194,21 @@ if wager_str:
 
             if result == "home_win":
                 if match_result == "Win":
-                    winnings = h_win_odds * wager
+                    winnings = samp_h_bet_odds * wager
                     st.write(f"Match Result: Home Win")
                 else:
                     winnings = -wager
                     st.write(f"Match Result: {match_result}")
             elif result == "draw":
                 if match_result == "Draw":
-                    winnings = draw_odds * wager
+                    winnings = samp_d_bet_odds * wager
                     st.write(f"Match Result: Draw")
                 else:
                     winnings = -wager
                     st.write(f"Match Result: {match_result}")
             elif result == "away_win":
                 if match_result == "Loss":
-                    winnings = h_loss_odds * wager
+                    winnings = samp_a_bet_odds * wager
                     st.write(f"Match Result: Home Loss")
                 else:
                     winnings = -wager
