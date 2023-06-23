@@ -36,18 +36,23 @@ def generate_sample_match(test_matches, Country_league_flag):
     samp_h_bet_odds = sample['h_avg_odds'].values[0]
     samp_a_bet_odds = sample['a_avg_odds'].values[0]
     samp_d_bet_odds = sample['d_avg_odds'].values[0]
+    home_team_short_name = sample['home_team_short_name'].values[0]
+    away_team_short_name = sample['away_team_short_name'].values[0]
+    home_team_goal = sample['home_team_goal'].values[0]
+    away_team_goal = sample['away_team_goal'].values[0]
 
     # Check if any of the odds values are NaN, and if so, regenerate the sample match
     if pd.isna(samp_h_bet_odds) or pd.isna(samp_a_bet_odds) or pd.isna(samp_d_bet_odds):
         return generate_sample_match(test_matches, Country_league_flag)
     
-    return samp_season, samp_league, samp_country, samp_stage, samp_h_team, samp_a_team, flag_url, samp_match_home_res, samp_h_bet_odds, samp_a_bet_odds, samp_d_bet_odds
+    return samp_season, samp_league, samp_country, samp_stage, samp_h_team, samp_a_team, flag_url, samp_match_home_res, samp_h_bet_odds, samp_a_bet_odds, samp_d_bet_odds, home_team_short_name, away_team_short_name, home_team_goal, away_team_goal
 
 
 # Check if the match data is already stored in session state
 if 'match_data' not in st.session_state or st.button("Next Match", key="next_match_button"):
     # Generate the sample match data and store it in session state
-    (samp_season, samp_league, samp_country, samp_stage, samp_h_team, samp_a_team, flag_url, samp_match_home_res, samp_h_bet_odds, samp_a_bet_odds, samp_d_bet_odds) = generate_sample_match(test_matches, Country_league_flag)
+    (samp_season, samp_league, samp_country, samp_stage, samp_h_team, samp_a_team, flag_url, samp_match_home_res, samp_h_bet_odds, samp_a_bet_odds, \
+     samp_d_bet_odds, home_team_short_name, away_team_short_name, home_team_goal, away_team_goal) = generate_sample_match(test_matches, Country_league_flag)
     st.session_state.match_data = {
                 'season': samp_season,
                 'league': samp_league,
@@ -59,7 +64,11 @@ if 'match_data' not in st.session_state or st.button("Next Match", key="next_mat
                 'samp_match_home_res': samp_match_home_res,
                 'samp_h_bet_odds': samp_h_bet_odds,
                 "samp_a_bet_odds": samp_a_bet_odds,
-                'samp_d_bet_odds':samp_d_bet_odds
+                'samp_d_bet_odds':samp_d_bet_odds,
+                'home_team_short_name':home_team_short_name,
+                'away_team_short_name':away_team_short_name,
+                'home_team_goal':home_team_goal,
+                'away_team_goal':away_team_goal
     }
 
 # Retrieve the match data from session state
@@ -74,6 +83,10 @@ samp_match_home_res = st.session_state.match_data['samp_match_home_res']
 samp_h_bet_odds = st.session_state.match_data['samp_h_bet_odds']
 samp_a_bet_odds = st.session_state.match_data['samp_a_bet_odds']
 samp_d_bet_odds = st.session_state.match_data['samp_d_bet_odds']
+home_team_short_name = st.session_state.match_data['home_team_short_name']
+away_team_short_name = st.session_state.match_data['away_team_short_name']
+home_team_goal = st.session_state.match_data['home_team_goal']
+away_team_goal = st.session_state.match_data['away_team_goal']
 
 st.markdown(
     f'<div style="display: flex; justify-content: center;">'
@@ -202,10 +215,21 @@ if wager_str:
             match_result = samp_match_home_res
             winnings = 0
 
+
+
+
+
+
+
+
+
+
+
+
             if result == "home_win":
                 if match_result == "Win":
                     winnings = samp_h_bet_odds * wager
-                    st.write(f"Match Result: Home Win")
+                    st.write(f"Match Result: Home Win  {home_team_short_name} {home_team_goal}:{away_team_goal} {away_team_short_name}")
                 elif match_result == "Draw":
                     winnings = -wager
                     st.write("Match Result: Draw")
