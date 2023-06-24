@@ -247,17 +247,17 @@ EV_a_win =round(EV(prediction_prob[0][0], {samp_a_bet_odds}),3)
 # st.markdown(f'Expected Value of Away Win {round(EV(prediction_prob[0][0], {samp_a_bet_odds}),3)}')
 
 if EV_h_win > 0:
-    st.write(f"Expected Value of Home Win: <span style='color:green'>${EV_h_win}</span>", unsafe_allow_html=True)
+    st.write(f"Expected Value of Home Win: <span style='color:green'>{EV_h_win}</span>", unsafe_allow_html=True)
 else:
     st.write(f"Expected Value of Home Win: <span style='color:red'>{EV_h_win}</span>", unsafe_allow_html=True)
 
 if EV_d_win > 0:
-    st.write(f"Expected Value of Draw: <span style='color:green'>${EV_d_win}</span>", unsafe_allow_html=True)
+    st.write(f"Expected Value of Draw: <span style='color:green'>{EV_d_win}</span>", unsafe_allow_html=True)
 else:
     st.write(f"Expected Value of Draw: <span style='color:red'>{EV_d_win}</span>", unsafe_allow_html=True)
 
 if EV_a_win > 0:
-    st.write(f"Expected Value of Away Win: <span style='color:green'>${EV_a_win}</span>", unsafe_allow_html=True)
+    st.write(f"Expected Value of Away Win: <span style='color:green'>{EV_a_win}</span>", unsafe_allow_html=True)
 else:
     st.write(f"Expected Value of Away Win: <span style='color:red'>{EV_a_win}</span>", unsafe_allow_html=True)
 
