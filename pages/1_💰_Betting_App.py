@@ -150,16 +150,13 @@ home_t = match_data[
     (match_data['League']==samp_league) & 
     (match_data['stage'] < samp_stage) & 
     ((match_data['home_team_name']==samp_h_team) | (match_data['away_team_name']==samp_h_team))
-    ][['League',
-        'season',
-       'stage',
-       'date',
+    ][['stage',
        'home_team_name',
        'away_team_name',
+       'home_result',
        'home_team_goal',
        'away_team_goal',
-       'home_result',
-       'h_five_form_pts',
+        'h_five_form_pts',
        'a_five_form_pts']]
 
 away_t = match_data[
@@ -193,13 +190,6 @@ st.markdown(
     f'<h3 style="text-align: center; color: red; line-height: 0.8;">{samp_a_team} WIN&nbsp;&nbsp;&nbsp; <u>{round(samp_a_bet_odds,1)} : 1</u></h3>', 
     unsafe_allow_html=True
 )
-
-
-
-
-
-
-
 
 
 
@@ -392,11 +382,23 @@ if wager_str:
                     st.write(f"Expected Value Running Total: <span style='color:red'>${round(st.session_state.EV_bet_running_total,2)}</span>", unsafe_allow_html=True)
 
 
+                # st.session_state.model_pred_running_total += pred_winnings
+                # if st.session_state.model_pred_running_total > 0:
+                #     st.write(f"Model Prediction Running Total: <span style='color:green'>${round(st.session_state.model_pred_running_total,2)}</span>", unsafe_allow_html=True)
+                # else:
+                #     st.write(f"Model Prediction Running Total: <span style='color:red'>${round(st.session_state.model_pred_running_total,2)}</span>", unsafe_allow_html=True)
+
                 st.session_state.model_pred_running_total += pred_winnings
                 if st.session_state.model_pred_running_total > 0:
-                    st.write(f"Model Prediction Running Total: <span style='color:green'>${round(st.session_state.model_pred_running_total,2)}</span>", unsafe_allow_html=True)
+                    st.write(f"Model Prediction Running Total: <span style='color:green; font-size: 18px'>${round(st.session_state.model_pred_running_total,2)}</span> ", end="")
                 else:
-                    st.write(f"Model Prediction Running Total: <span style='color:red'>${round(st.session_state.model_pred_running_total,2)}</span>", unsafe_allow_html=True)
+                    st.write(f"Model Prediction Running Total: <span style='color:red; font-size: 18px'>${round(st.session_state.model_pred_running_total,2)}</span> ", end="")
+
+                if pred_winnings > 0:
+                    st.write(f"(Winnings: <span style='font-size: 12px'>${round(pred_winnings,2)}</span>)", unsafe_allow_html=True)
+                else:
+                    st.write(f"(Loss: <span style='font-size: 12px'>${round(pred_winnings,2)}</span>)", unsafe_allow_html=True)
+
 
     except ValueError:
         st.warning("Please enter a valid wager (e.g. 100 or 55.55), excluding the dollar sign.")
