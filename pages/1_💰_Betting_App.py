@@ -388,18 +388,40 @@ if wager_str:
                 # else:
                 #     st.write(f"Model Prediction Running Total: <span style='color:red'>${round(st.session_state.model_pred_running_total,2)}</span>", unsafe_allow_html=True)
 
-                st.session_state.model_pred_running_total += pred_winnings
-                if st.session_state.model_pred_running_total > 0:
+                # st.session_state.model_pred_running_total += pred_winnings
+                # if st.session_state.model_pred_running_total > 0:
+                #     if pred_winnings > 0:
+                #         st.write(f"Model Prediction Running Total: <span style='color:green; font-size: 18px'>${round(st.session_state.model_pred_running_total,2)}</span><span style='color:green; font-size: 12px'>&nbsp;&nbsp;(${round(pred_winnings,2)})</span>", unsafe_allow_html=True)
+                #     else:
+                #         st.write(f"Model Prediction Running Total: <span style='color:green; font-size: 18px'>${round(st.session_state.model_pred_running_total,2)}</span><span style='color:red; font-size: 12px'>&nbsp;&nbsp;(${round(pred_winnings,2)})</span>", unsafe_allow_html=True)
+                # else:
+                #     if pred_winnings <= 0:
+                #         st.write(f"Model Prediction Running Total: <span style='color:red; font-size: 18px'>${round(st.session_state.model_pred_running_total,2)}</span><span style='color:green; font-size: 12px'>&nbsp;&nbsp;(${round(pred_winnings,2)})</span>", unsafe_allow_html=True)
+                #     else:
+                #         st.write(f"Model Prediction Running Total: <span style='color:red; font-size: 18px'>${round(st.session_state.model_pred_running_total,2)}</span><span style='color:red; font-size: 12px'>&nbsp;&nbsp;(${round(pred_winnings,2)})</span>", unsafe_allow_html=True)
+    
+                running_total = st.session_state.model_pred_running_total
+                if running_total > 0:
                     if pred_winnings > 0:
-                        st.write(f"Model Prediction Running Total: <span style='color:green; font-size: 18px'>${round(st.session_state.model_pred_running_total,2)}</span><span style='color:green; font-size: 12px'>&nbsp;&nbsp;(${round(pred_winnings,2)})</span>", unsafe_allow_html=True)
+                        color_total = "green"
+                        color_winnings = "green"
                     else:
-                        st.write(f"Model Prediction Running Total: <span style='color:green; font-size: 18px'>${round(st.session_state.model_pred_running_total,2)}</span><span style='color:red; font-size: 12px'>&nbsp;&nbsp;(${round(pred_winnings,2)})</span>", unsafe_allow_html=True)
+                        color_total = "green"
+                        color_winnings = "red"
                 else:
                     if pred_winnings <= 0:
-                        st.write(f"Model Prediction Running Total: <span style='color:red; font-size: 18px'>${round(st.session_state.model_pred_running_total,2)}</span><span style='color:green; font-size: 12px'>&nbsp;&nbsp;(${round(pred_winnings,2)})</span>", unsafe_allow_html=True)
+                        color_total = "red"
+                        color_winnings = "green"
                     else:
-                        st.write(f"Model Prediction Running Total: <span style='color:red; font-size: 18px'>${round(st.session_state.model_pred_running_total,2)}</span><span style='color:red; font-size: 12px'>&nbsp;&nbsp;(${round(pred_winnings,2)})</span>", unsafe_allow_html=True)
-    
+                        color_total = "red"
+                        color_winnings = "red"
+
+                total_html = f"<span style='color:{color_total}; font-size: 18px'>${round(running_total, 2)}</span>"
+                winnings_html = f"<span style='color:{color_winnings}; font-size: 12px'>&nbsp;&nbsp;(${round(pred_winnings, 2)})</span>"
+
+                st.write(f"Model Prediction Running Total: {total_html}{winnings_html}", unsafe_allow_html=True)
+
+
     except ValueError:
         st.warning("Please enter a valid wager (e.g. 100 or 55.55), excluding the dollar sign.")
 
