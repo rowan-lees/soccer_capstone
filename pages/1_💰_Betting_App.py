@@ -231,9 +231,10 @@ prediction = XGBOOST_grid_s.predict([example_x])
 prediction_prob = XGBOOST_grid_s.predict_proba([example_x])
 
 st.markdown(f"Probabilities: {prediction_prob}")
-prediction_labels = {0: "Away Win", 1: "Draw", 2: "Home Win"}
-prediction_text = prediction_labels[prediction]
-st.markdown(f"Model prediction: {prediction_text}")
+# prediction_labels = {0: "Away Win", 1: "Draw", 2: "Home Win"}
+# prediction_text = prediction_labels[prediction]
+# st.markdown(f"Model prediction: {prediction_text}")
+st.markdown(f"Model prediction: {prediction}")
 # st.markdown(f"True label: {example_y}"a)
 st.markdown(f'Expected Value of Home Loss {round(EV(prediction_prob[0][0], {samp_a_bet_odds}),3)}')
 st.markdown(f'Expected Value of Draw {round(EV(prediction_prob[0][1], {samp_d_bet_odds}),3)}')
