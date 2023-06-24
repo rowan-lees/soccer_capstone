@@ -230,7 +230,7 @@ example_y = y_test.iloc[example_idx]
 prediction = XGBOOST_grid_s.predict([example_x])
 prediction_prob = XGBOOST_grid_s.predict_proba([example_x])
 
-st.markdown(f"Probabilities: {prediction_prob}")
+# st.markdown(f"Probabilities: {prediction_prob}")
 prediction_scalar = prediction.item()  # Convert prediction to a scalar value
 prediction_labels = {0: "Away Win", 1: "Draw", 2: "Home Win"}
 prediction_text = prediction_labels[prediction_scalar]
@@ -242,15 +242,24 @@ EV_h_win = round(EV(prediction_prob[0][2], {samp_h_bet_odds}),3)
 EV_d_win =round(EV(prediction_prob[0][1], {samp_d_bet_odds}),3)
 EV_a_win =round(EV(prediction_prob[0][0], {samp_a_bet_odds}),3)
 
-st.markdown(f'Expected Value of Home Win {round(EV(prediction_prob[0][2], {samp_h_bet_odds}),3)}')
-st.markdown(f'Expected Value of Draw {round(EV(prediction_prob[0][1], {samp_d_bet_odds}),3)}')
-st.markdown(f'Expected Value of Away Win {round(EV(prediction_prob[0][0], {samp_a_bet_odds}),3)}')
+# st.markdown(f'Expected Value of Home Win {round(EV(prediction_prob[0][2], {samp_h_bet_odds}),3)}')
+# st.markdown(f'Expected Value of Draw {round(EV(prediction_prob[0][1], {samp_d_bet_odds}),3)}')
+# st.markdown(f'Expected Value of Away Win {round(EV(prediction_prob[0][0], {samp_a_bet_odds}),3)}')
 
 if EV_h_win > 0:
     st.write(f"Expected Value of Home Win: <span style='color:green'>${EV_h_win}</span>", unsafe_allow_html=True)
 else:
-    st.write(f"Expected Value of Home Win: <span style='color:red'>${EV_h_win}</span>", unsafe_allow_html=True)
+    st.write(f"Expected Value of Home Win: <span style='color:red'>{EV_h_win}</span>", unsafe_allow_html=True)
 
+if EV_d_win > 0:
+    st.write(f"Expected Value of Draw: <span style='color:green'>${EV_d_win}</span>", unsafe_allow_html=True)
+else:
+    st.write(f"Expected Value of Draw: <span style='color:red'>{EV_d_win}</span>", unsafe_allow_html=True)
+
+if EV_a_win > 0:
+    st.write(f"Expected Value of Away Win: <span style='color:green'>${EV_a_win}</span>", unsafe_allow_html=True)
+else:
+    st.write(f"Expected Value of Away Win: <span style='color:red'>{EV_a_win}</span>", unsafe_allow_html=True)
 
 #betting functionality
 
