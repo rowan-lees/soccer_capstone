@@ -396,7 +396,7 @@ if wager_str:
                     else:
                         st.write(f"Model Prediction Running Total: :green[${round(st.session_state.model_pred_running_total,2)}] :red[${round(pred_winnings,2)}]")
                 else:
-                    pred_winnings > 0:
+                    if pred_winnings > 0:
                         st.write(f"Model Prediction Running Total: :red[${round(st.session_state.model_pred_running_total,2)}] :green[${round(pred_winnings,2)}]")
                     else:
                         st.write(f"Model Prediction Running Total: :red[${round(st.session_state.model_pred_running_total,2)}] :red[${round(pred_winnings,2)}]")
