@@ -295,6 +295,44 @@ if wager_str:
         if result:
             match_result = samp_match_home_res
             winnings = 0
+            ev_winnings = 0
+            pred_winnings = 0
+
+
+            if result == "home_win":
+                if (EV_h_win > EV_d_win) & (EV_h_win > EV_a_win):
+                    ev_winnings = (samp_h_bet_odds * wager) - wager
+                else:
+                    ev_winnings = -wager
+            elif result == "draw":
+                if (EV_d_win > EV_a_win) & (EV_d_win > EV_h_win):
+                    ev_winnings = (samp_d_bet_odds * wager) - wager
+                else:
+                    ev_winnings = -wager
+            elif result == "away_win":
+                if (EV_a_win > EV_d_win) & (EV_a_win > EV_h_win):
+                    ev_winnings = (samp_a_bet_odds * wager) - wager
+                else:
+                    ev_winnings = -wager
+
+
+            if result == "home_win":
+                if (prediction_prob[0][2] > prediction_prob[0][1]) & (prediction_prob[0][2] > prediction_prob[0][0]):
+                    pred_winnings = (samp_h_bet_odds * wager) - wager
+                else:
+                    pred_winnings = -wager
+            elif result == "draw":
+                if (prediction_prob[0][1] > prediction_prob[0][0]) & (prediction_prob[0][1] > prediction_prob[0][2]):
+                    pred_winnings = (samp_d_bet_odds * wager) - wager
+                else:
+                    pred_winnings = -wager
+            elif result == "away_win":
+                if (prediction_prob[0][0] > prediction_prob[0][1]) & (prediction_prob[0][0] > prediction_prob[0][2]):
+                    pred_winnings = (samp_a_bet_odds * wager) - wager
+                else:
+                    pred_winnings = -wager
+
+
 
             if result == "home_win":
                 if match_result == "Win":
@@ -327,6 +365,7 @@ if wager_str:
                     winnings = -wager
                     st.write(f"Match Result:&nbsp; Draw &nbsp;&nbsp;{home_team_short_name} {home_team_goal}:{away_team_goal} {away_team_short_name}")
 
+
             if winnings != 0:
                 if winnings > 0:
                     st.write(f"Winnings: <span style='color:green'>${round(winnings,2)}</span>", unsafe_allow_html=True)
@@ -335,14 +374,20 @@ if wager_str:
 
 
                 # Update the running total in session_state
-                if 'running_total' not in st.session_state:
+                if 'running_total' & 'EV_bet_running_total' & 'model_pred_running_total' not in st.session_state:
                     st.session_state.running_total = 0
+                    st.session_state.EV_bet_running_total = 0
+                    st.session_state.model_pred_running_total = 0
 
                 st.session_state.running_total += winnings
                 if st.session_state.running_total > 0:
                     st.write(f"Running Total: <span style='color:green'>${round(st.session_state.running_total,2)}</span>", unsafe_allow_html=True)
                 else:
                     st.write(f"Running Total: <span style='color:red'>${round(st.session_state.running_total,2)}</span>", unsafe_allow_html=True)
+
+                st.session_state.EV_bet_running_total += ev_winnings
+
+                st.session_state.model_pred_running_total += pred_winnings
 
     except ValueError:
         st.warning("Please enter a valid wager (e.g. 100 or 55.55), excluding the dollar sign.")
