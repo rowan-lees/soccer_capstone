@@ -390,9 +390,9 @@ if wager_str:
 
                 st.session_state.model_pred_running_total += pred_winnings
                 if st.session_state.model_pred_running_total > 0:
-                    st.write(f"Model Prediction Running Total: <span style='color:green; font-size: 18px'>${round(st.session_state.model_pred_running_total,2)}</span> ", end="")
+                    st.write(f"Model Prediction Running Total: <span style='color:green; font-size: 18px'>${round(st.session_state.model_pred_running_total,2)}</span> ", end="", unsafe_allow_html=True)
                 else:
-                    st.write(f"Model Prediction Running Total: <span style='color:red; font-size: 18px'>${round(st.session_state.model_pred_running_total,2)}</span> ", end="")
+                    st.write(f"Model Prediction Running Total: <span style='color:red; font-size: 18px'>${round(st.session_state.model_pred_running_total,2)}</span> ", end="", unsafe_allow_html=True)
 
                 if pred_winnings > 0:
                     st.write(f"(Winnings: <span style='font-size: 12px'>${round(pred_winnings,2)}</span>)", unsafe_allow_html=True)
