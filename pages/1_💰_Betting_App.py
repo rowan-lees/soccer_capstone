@@ -416,10 +416,10 @@ if wager_str:
                         color_total = "red"
                         color_winnings = "red"
 
-                total_html = f"<span style='color:{color_total}; font-size: 18px'>${round(running_total, 2)}</span>"
-                winnings_html = f"<span style='color:{color_winnings}; font-size: 12px'>(${round(pred_winnings, 2)})</span>"
+                total_html = f"<span style='color:{color_total}; font-size: 18px'>${round(running_total, 2)}"
+                winnings_html = f"<span style='color:{color_winnings}; font-size: 12px'>(${round(pred_winnings, 2)})</span></span>"
 
-                st.write(f"Model Prediction Running Total: {total_html}{winnings_html}", unsafe_allow_html=True)
+                st.write(f"Model Prediction Running Total: {total_html}  {winnings_html}", unsafe_allow_html=True)
 
 
 
