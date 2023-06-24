@@ -229,7 +229,7 @@ prediction_prob = XGBOOST_grid_s.predict_proba([example_x])
 
 st.markdown(f"Probabilities: {prediction_prob}")
 st.markdown(f"Model prediction: {prediction}")
-fst.markdown(f'Expected Value of Home Loss {round(EV(0.29845473, {samp_a_bet_odds}),3)}')
+st.markdown(f'Expected Value of Home Loss {round(EV(0.29845473, {samp_a_bet_odds}),3)}')
 st.markdown(f'Expected Value of Draw {round(EV(0.29672, {samp_d_bet_odds}),3)}')
 st.markdown(f'Expected Value of Home Win {round(EV(0.40482527, {samp_h_bet_odds}),3)}')
 
