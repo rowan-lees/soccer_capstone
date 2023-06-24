@@ -299,34 +299,34 @@ if wager_str:
             pred_winnings = 0
 
 
-            if result == "home_win":
+            if match_result == "Win":
                 if (EV_h_win > EV_d_win) & (EV_h_win > EV_a_win):
                     ev_winnings = (samp_h_bet_odds * wager) - wager
                 else:
                     ev_winnings = -wager
-            elif result == "draw":
+            elif match_result == "Draw":
                 if (EV_d_win > EV_a_win) & (EV_d_win > EV_h_win):
                     ev_winnings = (samp_d_bet_odds * wager) - wager
                 else:
                     ev_winnings = -wager
-            elif result == "away_win":
+            elif match_result == "Loss":
                 if (EV_a_win > EV_d_win) & (EV_a_win > EV_h_win):
                     ev_winnings = (samp_a_bet_odds * wager) - wager
                 else:
                     ev_winnings = -wager
 
 
-            if result == "home_win":
+            if match_result == "Win":
                 if (prediction_prob[0][2] > prediction_prob[0][1]) & (prediction_prob[0][2] > prediction_prob[0][0]):
                     pred_winnings = (samp_h_bet_odds * wager) - wager
                 else:
                     pred_winnings = -wager
-            elif result == "draw":
+            elif match_result == "Draw":
                 if (prediction_prob[0][1] > prediction_prob[0][0]) & (prediction_prob[0][1] > prediction_prob[0][2]):
                     pred_winnings = (samp_d_bet_odds * wager) - wager
                 else:
                     pred_winnings = -wager
-            elif result == "away_win":
+            elif match_result == "Loss":
                 if (prediction_prob[0][0] > prediction_prob[0][1]) & (prediction_prob[0][0] > prediction_prob[0][2]):
                     pred_winnings = (samp_a_bet_odds * wager) - wager
                 else:
