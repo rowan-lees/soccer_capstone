@@ -386,8 +386,17 @@ if wager_str:
                     st.write(f"Running Total: <span style='color:red'>${round(st.session_state.running_total,2)}</span>", unsafe_allow_html=True)
 
                 st.session_state.EV_bet_running_total += ev_winnings
+                if st.session_state.EV_bet_running_total > 0:
+                    st.write(f"Expected Value Running Total: <span style='color:green'>${round(st.session_state.EV_bet_running_total,2)}</span>", unsafe_allow_html=True)
+                else:
+                    st.write(f"Expected Value Running Total: <span style='color:red'>${round(st.session_state.EV_bet_running_total,2)}</span>", unsafe_allow_html=True)
+
 
                 st.session_state.model_pred_running_total += pred_winnings
+                if st.session_state.model_pred_running_total > 0:
+                    st.write(f"Model Prediction Running Total: <span style='color:green'>${round(st.session_state.model_pred_running_total,2)}</span>", unsafe_allow_html=True)
+                else:
+                    st.write(f"Model Prediction Running Total: <span style='color:red'>${round(st.session_state.model_pred_running_total,2)}</span>", unsafe_allow_html=True)
 
     except ValueError:
         st.warning("Please enter a valid wager (e.g. 100 or 55.55), excluding the dollar sign.")
