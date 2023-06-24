@@ -389,8 +389,8 @@ if wager_str:
                 else:
                     st.write(f"Model Prediction Running Total: <span style='color:red'>${round(st.session_state.model_pred_running_total,2)}</span>", unsafe_allow_html=True)
 
-        except ValueError:
-            st.warning("Please enter a valid wager (e.g. 100 or 55.55), excluding the dollar sign.")
+    except ValueError:
+        st.warning("Please enter a valid wager (e.g. 100 or 55.55), excluding the dollar sign.")
 
 
 #markdown for league table
