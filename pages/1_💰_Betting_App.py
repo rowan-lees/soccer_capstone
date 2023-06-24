@@ -374,7 +374,7 @@ if wager_str:
 
 
                 # Update the running total in session_state
-                if 'running_total' & 'EV_bet_running_total' & 'model_pred_running_total' not in st.session_state:
+                if 'running_total' not in st.session_state and 'EV_bet_running_total' not in st.session_state and 'model_pred_running_total' not in st.session_state:
                     st.session_state.running_total = 0
                     st.session_state.EV_bet_running_total = 0
                     st.session_state.model_pred_running_total = 0
